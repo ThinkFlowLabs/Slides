@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como la IA Puede Hacerte un Mejor Trader | Daniel Muvdi</title>
+<meta name="description" content="Conferencia de 25 minutos por Daniel Muvdi sobre como usar inteligencia artificial para analizar mejor, estructurar portafolios y operar con mas disciplina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #141519;
+    --bg-card: #202127;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.6);
+    --accent-blue: #002ef4;
+    --accent-cyan: #27dddf;
+    --accent-mid-blue: #115fad;
+    --accent-green: #22c55e;
+    --accent-red: #ef4444;
+    --accent-orange: #f97316;
+    --border: rgba(255,255,255,0.08);
+    --title-size: clamp(2.8rem, 6vw, 5rem);
+    --h2-size: clamp(2rem, 4.5vw, 3.5rem);
+    --h3-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    --body-size: clamp(1rem, 1.8vw, 1.5rem);
+    --small-size: clamp(0.85rem, 1.3vw, 1.15rem);
+    --slide-padding: clamp(2.5rem, 5vw, 5rem);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SLIDE BASE ─── */
+.slide {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--slide-padding);
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 75% 50%, rgba(0,46,244,0.25) 0%, rgba(0,46,244,0.1) 35%, transparent 65%),
+        radial-gradient(ellipse at 90% 80%, rgba(0,46,244,0.15) 0%, transparent 50%),
+        #000000;
+}
+
+.slide--center { align-items: center; text-align: center; }
+.slide--left { align-items: flex-start; text-align: left; }
+
+.slide-inner {
+    width: 100%;
+    max-width: 90%;
+    position: relative;
+    z-index: 1;
+}
+
+.slide--center .slide-inner { max-width: 85%; }
+
+/* ─── DECORATIVE ELEMENTS ─── */
+.circle-deco {
+    position: absolute;
+    width: clamp(450px, 45vw, 750px);
+    height: clamp(450px, 45vw, 750px);
+    border-radius: 50%;
+    right: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+    background:
+        radial-gradient(circle, transparent 25%, rgba(0,46,244,0.35) 26%, rgba(0,46,244,0.35) 40%, transparent 41%),
+        radial-gradient(circle, transparent 50%, rgba(0,46,244,0.2) 51%, rgba(0,46,244,0.2) 65%, transparent 66%),
+        radial-gradient(circle, transparent 75%, rgba(0,46,244,0.12) 76%, rgba(0,46,244,0.12) 90%, transparent 91%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.circle-deco--large {
+    width: clamp(550px, 55vw, 850px);
+    height: clamp(550px, 55vw, 850px);
+}
+
+.glow-tr {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(39,221,223,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.section-label {
+    font-size: var(--small-size);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-cyan);
+    font-weight: 600;
+    margin-bottom: 1.2vh;
+}
+
+.slide-title {
+    font-size: var(--title-size);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2vh;
+}
+
+.slide-h2 {
+    font-size: var(--h2-size);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 2vh;
+    text-shadow: 0 2px 20px rgba(0, 46, 244, 0.3);
+}
+
+.slide-h3 {
+    font-size: var(--h3-size);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1vh;
+}
+
+.slide-body {
+    font-size: var(--body-size);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.slide-small {
+    font-size: var(--small-size);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.text-cyan { color: #ffffff; }
+.text-green { color: #ffffff; }
+.text-red { color: #ffffff; }
+.text-orange { color: #ffffff; }
+.text-blue { color: #ffffff; }
+.text-white { color: var(--text-primary); }
+.fw-700 { font-weight: 700; }
+.fw-600 { font-weight: 600; }
+.fw-500 { font-weight: 500; }
+
+/* ─── ACCENT LINE ─── */
+.accent-line {
+    width: 50px;
+    height: 4px;
+    background: var(--accent-cyan);
+    border-radius: 2px;
+    margin-bottom: 2vh;
+}
+
+.accent-line--center { margin-left: auto; margin-right: auto; }
+
+/* ─── CARDS ─── */
+.card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: clamp(1.5rem, 2.5vw, 2.2rem);
+}
+
+.card--prompt {
+    border-left: 4px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+}
+
+.prompt-text {
+    font-size: clamp(0.78rem, 1.2vw, 1rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
+    white-space: pre-wrap;
+}
+
+/* ─── GRID LAYOUTS ─── */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.2rem, 2vw, 2rem);
+    width: 100%;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 1.8vw, 1.8rem);
+    width: 100%;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 1.5vw, 1.5rem);
+    width: 100%;
+}
+
+.grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: clamp(1rem, 1.5vw, 1.5rem);
+    width: 100%;
+}
+
+/* ─── BULLET LISTS ─── */
+.bullet-list { list-style: none; padding: 0; }
+.bullet-list li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 0.8vh;
+    font-size: var(--body-size);
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+.bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+}
+.bullet-list--orange li::before { background: var(--accent-orange); }
+.bullet-list--green li::before { background: var(--accent-green); }
+.bullet-list--red li::before { background: var(--accent-red); }
+.bullet-list--small li { font-size: var(--small-size); }
+
+/* ─── CHECK LIST ─── */
+.check-list { list-style: none; padding: 0; }
+.check-list li {
+    position: relative;
+    padding-left: 1.8em;
+    margin-bottom: 0.7vh;
+    font-size: var(--small-size);
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+.check-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ─── INSIGHT BAR ─── */
+.insight {
+    margin-top: 3vh;
+    padding-top: 1.5vh;
+    border-top: 1px solid rgba(39,221,223,0.25);
+    font-size: var(--small-size);
+    color: var(--accent-cyan);
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* ─── BIG STAT ─── */
+.big-stat {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.big-stat--medium {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* ─── TAG ─── */
+.tag {
+    display: inline-block;
+    padding: 0.4em 1.2em;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    font-size: var(--small-size);
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* ─── PHOTO ─── */
+.photo-circle {
+    width: clamp(140px, 18vw, 220px);
+    height: clamp(140px, 18vw, 220px);
+    border-radius: 50%;
+    border: none;
+    object-fit: cover;
+    margin-bottom: 2vh;
+    box-shadow: 0 0 40px rgba(0, 46, 244, 0.3);
+}
+
+/* ─── TABLE ─── */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--small-size);
+}
+.data-table th {
+    text-align: left;
+    padding: 0.8em 1em;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+    font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.data-table td {
+    padding: 0.7em 1em;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ─── STEP FLOW ─── */
+.steps-flow {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 1vw, 1rem);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2.5vh;
+}
+.step-item {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 0.6em 1.4em;
+    font-size: var(--small-size);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+.step-arrow {
+    color: rgba(255,255,255,0.2);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+}
+
+/* ─── NUMBERED ITEM ─── */
+.num-card { text-align: center; }
+.num-card .num {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.5vh;
+}
+.num-card .num-title {
+    font-size: var(--h3-size);
+    font-weight: 700;
+    margin-bottom: 0.5vh;
+}
+.num-card .num-desc {
+    font-size: var(--small-size);
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ─── VERTICAL STEPS ─── */
+.v-steps { list-style: none; padding: 0; }
+.v-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1em;
+    margin-bottom: 1.5vh;
+}
+.v-step-num {
+    flex-shrink: 0;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--small-size);
+}
+.v-step-content .v-step-title {
+    font-weight: 700;
+    font-size: var(--body-size);
+    margin-bottom: 0.2vh;
+}
+.v-step-content .v-step-desc {
+    font-size: var(--small-size);
+    color: var(--text-secondary);
+}
+
+/* ─── COMPARISON CARDS ─── */
+.compare-card {
+    text-align: center;
+    padding: clamp(2rem, 3vw, 3rem);
+}
+.compare-price {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5vh;
+}
+.compare-label {
+    font-size: var(--body-size);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ─── QUOTE ─── */
+.quote {
+    font-style: italic;
+    font-size: var(--body-size);
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin-bottom: 2.5vh;
+    max-width: 50em;
+}
+
+/* ─── X LOGO SVG ─── */
+.x-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--body-size);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.x-link:hover { color: var(--text-primary); }
+.x-link svg { width: 1.2em; height: 1.2em; fill: currentColor; }
+
+/* ─── ANIMATIONS ─── */
+.reveal {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+.slide.visible .reveal { opacity: 1; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+.d5 { transition-delay: 0.5s; }
+.d6 { transition-delay: 0.6s; }
+.d7 { transition-delay: 0.7s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transition: none; }
+}
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* ─── NAV DOTS ─── */
+.nav-dots {
+    position: fixed;
+    right: clamp(12px, 1.5vw, 24px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+}
+.nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+}
+.nav-dot.active {
+    background: var(--accent-cyan);
+    transform: scale(1.3);
+}
+
+/* ─── KEYBOARD HINT ─── */
+.kbd-hint {
+    position: fixed;
+    bottom: clamp(12px, 2vh, 24px);
+    right: clamp(12px, 2vw, 24px);
+    font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+    color: rgba(255,255,255,0.2);
+    z-index: 1000;
+    pointer-events: none;
+    transition: opacity 2s ease 5s;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+    .grid-2, .grid-3, .grid-4, .grid-2x2 { grid-template-columns: 1fr; }
+    .slide-inner { max-width: 95%; }
+    .nav-dots { display: none; }
+    .circle-deco { opacity: 0.4; }
+    .steps-flow { flex-direction: column; }
+    .step-arrow { transform: rotate(90deg); }
+}
+
+@media (max-height: 700px) {
+    .slide { padding: clamp(1.5rem, 3vw, 2.5rem); }
+    .insight { margin-top: 1.5vh; }
+}
+
+@media (max-height: 600px) {
+    :root {
+        --title-size: clamp(2rem, 5vw, 3.5rem);
+        --h2-size: clamp(1.6rem, 3.5vw, 2.5rem);
+        --body-size: clamp(0.85rem, 1.5vw, 1.2rem);
+        --small-size: clamp(0.75rem, 1.1vw, 1rem);
+    }
+}
+
+@media (max-height: 500px) {
+    :root {
+        --title-size: clamp(1.6rem, 4vw, 2.5rem);
+        --h2-size: clamp(1.3rem, 3vw, 2rem);
+    }
+    .card { padding: clamp(0.8rem, 1.5vw, 1.2rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+
+<!-- Nav Dots -->
+<nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+
+<!-- Keyboard Hint -->
+<div class="kbd-hint" id="kbdHint">Flechas / Space para navegar</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 1: TITLE
+     Speaker notes: Introduce yourself. 20 years in markets. Set the tone:
+     this talk is about practical AI tools, not hype.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--center" data-slide="0">
+    <div class="slide-inner">
+        <img src="https://pbs.twimg.com/profile_images/1905264593728950272/RpEw8__T_400x400.jpg"
+             alt="Daniel Muvdi" class="photo-circle reveal d1" loading="eager">
+        <div class="accent-line accent-line--center reveal d2"></div>
+        <h1 class="slide-title reveal d3">Como la IA Puede Hacerte<br>un Mejor Trader</h1>
+        <p class="slide-body reveal d4" style="max-width: 38em; margin: 0 auto 2.5vh;">
+            Experiencia, criterio y herramientas pr&aacute;cticas para analizar mejor,
+            estructurar portafolios y operar con m&aacute;s disciplina.
+        </p>
+        <p class="reveal d5" style="margin-bottom: 0.5vh; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; color: #ffffff;">
+            Daniel Muvdi
+        </p>
+        <p class="slide-small reveal d5" style="margin-bottom: 2.5vh;">
+            20 a&ntilde;os de experiencia en mercados
+        </p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 2: MI PUNTO DE PARTIDA (01)
+     Speaker notes: Share your personal story. The audience needs to see
+     themselves in your early struggles. Establish credibility through
+     vulnerability, then pivot to how experience compounds.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="1">
+    <div class="glow-tr"></div>
+    <div class="slide-inner" style="display: grid; grid-template-columns: 1fr clamp(200px, 28vw, 380px); gap: clamp(2rem, 4vw, 4rem); align-items: center;">
+        <div>
+            <span class="section-label reveal d1">01 / Mi punto de partida</span>
+            <div class="reveal d2" style="display: flex; align-items: baseline; gap: 0.5em; margin-bottom: 1.5vh;">
+                <span class="big-stat" style="color: #ffffff;">20</span>
+                <span class="slide-h3" style="color: var(--text-secondary); font-weight: 500;">a&ntilde;os de experiencia en mercados</span>
+            </div>
+            <p class="slide-h3 reveal d3" style="margin-bottom: 2vh; color: var(--text-primary);">Al principio no fue f&aacute;cil</p>
+            <ul class="bullet-list reveal d4">
+                <li>Tuve que aprender indicadores, an&aacute;lisis fundamental, geopol&iacute;tica, sentimiento de mercado.</li>
+                <li>Prob&eacute; demasiadas cosas al mismo tiempo antes de construir una base s&oacute;lida.</li>
+                <li>Con los a&ntilde;os convert&iacute; ese proceso en disciplina y resultados consistentes.</li>
+            </ul>
+            <p class="insight reveal d5">Lo que hoy entiendo en minutos, al principio me tom&oacute; a&ntilde;os.</p>
+        </div>
+        <div class="reveal d3" style="overflow: hidden; border-radius: 16px; max-height: min(70vh, 500px);">
+            <img src="assets/time-rewards-bg.png" alt="El tiempo recompensa" style="width: 100%; height: 100%; object-fit: cover; display: block; max-height: min(70vh, 500px);">
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 3: EL PROBLEMA (02)
+     Speaker notes: Describe the common pain. Everyone in the audience
+     has felt overwhelmed. The 90% stat is your anchor — most fail
+     because of structure, not intelligence.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="2">
+    <div class="glow-tr"></div>
+    <div class="slide-inner" style="display: grid; grid-template-columns: 1fr clamp(200px, 28vw, 380px); gap: clamp(2rem, 4vw, 4rem); align-items: center;">
+        <div>
+            <span class="section-label reveal d1">02 / El problema</span>
+            <h2 class="slide-h2 reveal d2">Demasiada informaci&oacute;n.<br>Muy poca estructura.</h2>
+            <ul class="bullet-list reveal d3" style="margin-bottom: 2vh;">
+                <li>Quiere entender indicadores, noticias, fundamentales y contexto al mismo tiempo.</li>
+                <li>Salta entre herramientas, estrategias, cursos, indicadores, sin una base s&oacute;lida.</li>
+                <li>Entradas sin un criterio claro y respaldado por datos.</li>
+                <li>No existe gesti&oacute;n del riesgo, o sobre-apalancamiento.</li>
+            </ul>
+            <div class="reveal d4" style="margin-bottom: 1.5vh;">
+                <div style="display: flex; align-items: baseline; gap: 0.5em;">
+                    <span class="big-stat" style="color: #ffffff;">90%</span>
+                    <span class="slide-body">de los traders pierden dinero</span>
+                </div>
+                <p class="slide-h3" style="color: #ffffff; margin-top: 0.3em;">&iquest;C&oacute;mo ser parte del <span style="color: var(--accent-cyan);">10% rentable?</span></p>
+            </div>
+            <p class="insight reveal d5">La mayor&iacute;a no falla por falta de ganas; falla por falta de estructura.</p>
+        </div>
+        <div class="reveal d3" style="overflow: hidden; border-radius: 16px; max-height: min(70vh, 500px);">
+            <img src="assets/trader-problem-bg.png" alt="El problema del trader" style="width: 100%; height: 100%; object-fit: cover; display: block; max-height: min(70vh, 500px);">
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 4: LO QUE CAMBIO CON LA AI (03)
+     Speaker notes: Transition from problem to solution. The AI is not
+     magic — it helps you understand, research, and structure. Three
+     pillars that solve the chaos from slide 3.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="3">
+    <div class="glow-tr"></div>
+    <div class="slide-inner">
+        <span class="section-label reveal d1">03 / Lo que cambi&oacute; con la IA</span>
+        <p class="quote reveal d2">"Hoy puedes tener a la mano una herramienta que te ayude a entender m&aacute;s r&aacute;pido, investigar mejor y organizar tu criterio."</p>
+        <div class="grid-3 reveal d3">
+            <div class="card" title=" ">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#27dddf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1vh;"><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.7-3.2 6H8.2C6.3 13.7 5 11.5 5 9a7 7 0 0 1 7-7z"/><path d="M9 17h6"/><path d="M10 20h4"/><path d="M12 2v1"/></svg>
+                <p class="slide-h3 text-cyan" style="margin-bottom: 1vh;">Entender</p>
+                <p class="slide-small">Explica conceptos dif&iacute;ciles con el nivel de profundidad que necesites. Si no sabes qu&eacute; es el EBITDA, p&iacute;dele que te lo explique como si &eacute;l fuera tu maestro y t&uacute; el estudiante.</p>
+            </div>
+            <div class="card" title=" ">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#27dddf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1vh;"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                <p class="slide-h3 text-cyan" style="margin-bottom: 1vh;">Investigar</p>
+                <p class="slide-small">Re&uacute;ne contexto de m&uacute;ltiples fuentes, compara escenarios y resume informaci&oacute;n que te tomar&iacute;a horas encontrar.</p>
+            </div>
+            <div class="card" title=" ">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#27dddf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1vh;"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <p class="slide-h3 text-cyan" style="margin-bottom: 1vh;">Estructurar</p>
+                <p class="slide-small">Convierte ideas dispersas en un plan concreto, una rutina diaria o una tesis de inversi&oacute;n documentada.</p>
+            </div>
+        </div>
+        <div class="grid-2 reveal d4" style="margin-top: 2vh;">
+            <div class="card" title=" ">
+                <p class="slide-h3 text-cyan" style="margin-bottom: 1vh;">Programadores + IA</p>
+                <p class="slide-small">Yo ahora estoy creando aplicaciones que antes necesitaban equipos enteros de desarrollo. No tengo tantas capacidades de programaci&oacute;n, pero la IA ahora me lo permite.</p>
+            </div>
+            <div class="card" title=" ">
+                <p class="slide-h3 text-cyan" style="margin-bottom: 1vh;">Traders + IA</p>
+                <p class="slide-small">Lo mismo est&aacute; pasando en trading, pero la gente no se est&aacute; dando cuenta. Entre m&aacute;s r&aacute;pido lo adoptes, m&aacute;s ventaja tendr&aacute;s.</p>
+            </div>
+        </div>
+        <p class="insight reveal d5">La IA acelera la curva de aprendizaje; no elimina la necesidad de criterio.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 5: EXPECTATIVAS CLARAS (04)
+     Speaker notes: Manage expectations early. Green vs red columns.
+     Make it clear: the AI is an assistant, not a crystal ball.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="4">
+    <div class="slide-inner">
+        <span class="section-label reveal d1">04 / Alcances y l&iacute;mites</span>
+        <h2 class="slide-h2 reveal d2">La IA como herramienta</h2>
+        <div class="grid-2 reveal d3">
+            <div>
+                <p class="slide-h3" style="margin-bottom: 1.5vh; color: #ffffff;">Alcances</p>
+                <ul class="bullet-list">
+                    <li>Acelera el research (investigaci&oacute;n)</li>
+                    <li>Te ayuda a estructurar escenarios</li>
+                    <li>Propone ideas de inversi&oacute;n con base en an&aacute;lisis de datos</li>
+                    <li>Te ayuda a gestionar el riesgo: exposici&oacute;n, concentraci&oacute;n y apalancamiento</li>
+                    <li>Te ayuda a documentar y crear rutinas</li>
+                </ul>
+            </div>
+            <div>
+                <p class="slide-h3" style="margin-bottom: 1.5vh; color: #ffffff;">L&iacute;mites</p>
+                <ul class="bullet-list">
+                    <li>No garantiza ganancias</li>
+                    <li>No sustituye validaci&oacute;n</li>
+                    <li>No elimina el riesgo de mercado</li>
+                    <li>No reemplaza disciplina emocional</li>
+                    <li>No toma decisiones por ti</li>
+                </ul>
+            </div>
+        </div>
+        <p class="insight reveal d4">La IA es un analista asistente; la responsabilidad sigue siendo tuya.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 6: ANTES DE PREGUNTAR QUE COMPRAR (05)
+     Speaker notes: Before ANY prompt, define your framework. These 4
+     parameters transform generic AI output into personalized analysis.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="5">
+    <div class="glow-tr"></div>
+    <div class="slide-inner">
+        <span class="section-label reveal d1">05 / Antes de preguntar qu&eacute; comprar</span>
+        <h2 class="slide-h2 reveal d2">Define esto primero</h2>
+        <div class="grid-4 reveal d3" style="margin-bottom: 2.5vh;">
+            <div class="card num-card" title=" ">
+                <div style="width: clamp(40px, 4vw, 56px); height: clamp(40px, 4vw, 56px); border-radius: 50%; background: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(1.1rem, 2vw, 1.5rem); margin: 0 auto clamp(0.5rem, 1vh, 0.8rem);">1</div>
+                <p class="num-title">Objetivo</p>
+                <p class="num-desc">Retiro, ingreso extra, ahorro, crecimiento patrimonial</p>
+            </div>
+            <div class="card num-card" title=" ">
+                <div style="width: clamp(40px, 4vw, 56px); height: clamp(40px, 4vw, 56px); border-radius: 50%; background: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(1.1rem, 2vw, 1.5rem); margin: 0 auto clamp(0.5rem, 1vh, 0.8rem);">2</div>
+                <p class="num-title">Horizonte</p>
+                <p class="num-desc">Corto, mediano o largo plazo</p>
+            </div>
+            <div class="card num-card" title=" ">
+                <div style="width: clamp(40px, 4vw, 56px); height: clamp(40px, 4vw, 56px); border-radius: 50%; background: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(1.1rem, 2vw, 1.5rem); margin: 0 auto clamp(0.5rem, 1vh, 0.8rem);">3</div>
+                <p class="num-title">Riesgo</p>
+                <p class="num-desc">Conservador, moderado o agresivo</p>
+            </div>
+            <div class="card num-card" title=" ">
+                <div style="width: clamp(40px, 4vw, 56px); height: clamp(40px, 4vw, 56px); border-radius: 50%; background: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(1.1rem, 2vw, 1.5rem); margin: 0 auto clamp(0.5rem, 1vh, 0.8rem);">4</div>
+                <p class="num-title">Capital</p>
+                <p class="num-desc">Cu&aacute;nto inviertes hoy y cu&aacute;nto puedes agregar cada mes</p>
+            </div>
+        </div>
+        <p class="quote reveal d4">"Sin este contexto, cualquier respuesta ser&aacute; gen&eacute;rica. Con este contexto, la IA empieza a trabajar contigo, como lo har&iacute;a un verdadero asesor financiero."</p>
+        <p class="insight reveal d5">Primero define el marco; despu&eacute;s construyes la estrategia.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 7: CASO PRACTICO: PORTAFOLIO (06)
+     Speaker notes: Show a REAL prompt. Walk through each line. Then
+     show what the AI returns — make it tangible.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="6">
+    <div class="slide-inner">
+        <span class="section-label reveal d1">06 / Caso pr&aacute;ctico: portafolio</span>
+        <h2 class="slide-h2 reveal d2">De la idea a la tesis</h2>
+        <p class="slide-small reveal d3" style="margin-bottom: 2vh; max-width: 55em;">Le das a la IA tu perfil de inversi&oacute;n, tu capital, tu horizonte y tu objetivo. Ella te devuelve un portafolio completo con distribuci&oacute;n, tesis por posici&oacute;n, escenarios y hasta las coincidencias con lo que est&aacute;n comprando los fondos institucionales m&aacute;s grandes del mundo.</p>
+        <div class="grid-2 reveal d4">
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Ejemplo de prompt</p>
+                <p class="prompt-text">Act&uacute;a como un analista senior de inversiones. Mi perfil: capital inicial de $25,000, aportes de $2,000 mensuales, tolerancia al riesgo moderada, horizonte de 24 meses. Objetivo: superar al S&amp;P 500 en al menos 3 puntos anuales.
+
+Quiero que analices los 13F filings (reportes p&uacute;blicos obligatorios ante la SEC para fondos con m&aacute;s de $100M en activos) m&aacute;s recientes de Berkshire Hathaway, Bridgewater, Renaissance Tech, Citadel y ARK Invest. Identifica las posiciones que est&aacute;n comprando y cruza esa informaci&oacute;n con fundamentales s&oacute;lidos.
+
+Necesito:
+1. Propuesta de distribuci&oacute;n por sector y activo con %
+2. Tesis de cada posici&oacute;n: por qu&eacute; esta empresa y por qu&eacute; ahora
+3. Qu&eacute; fondos institucionales la est&aacute;n comprando (13F)
+4. Escenarios alcista, base y bajista a 24 meses
+5. Tabla: precio actual, target 24M, potencial y riesgo</p>
+            </div>
+            <div>
+                <p class="slide-h3 reveal d4" style="margin-bottom: 1.2vh;">La IA te devuelve:</p>
+                <div class="card reveal d4" title=" " style="padding: clamp(0.8rem, 1.5vw, 1.2rem); overflow-x: auto;">
+                    <table class="data-table" style="width: 100%; font-size: clamp(0.6rem, 0.95vw, 0.8rem);">
+                        <thead>
+                            <tr>
+                                <th>Activo</th>
+                                <th>Sector</th>
+                                <th>%</th>
+                                <th>Target 24M</th>
+                                <th>Potencial</th>
+                                <th>Riesgo</th>
+                                <th>Fondos 13F</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="color:#fff; font-weight:600;">AAPL <span style="font-weight:400; color:var(--text-secondary);">Apple</span></td><td>Tech</td><td>15%</td><td>$245</td><td style="color:#fff; font-weight:600;">+18%</td><td>Moderado</td><td>Berkshire, Citadel</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">GOOGL <span style="font-weight:400; color:var(--text-secondary);">Alphabet</span></td><td>Tech</td><td>12%</td><td>$195</td><td style="color:#fff; font-weight:600;">+22%</td><td>Moderado</td><td>Renaissance, Bridgewater</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">UNH <span style="font-weight:400; color:var(--text-secondary);">UnitedHealth</span></td><td>Salud</td><td>12%</td><td>$620</td><td style="color:#fff; font-weight:600;">+15%</td><td>Bajo</td><td>Citadel, Bridgewater</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">JPM <span style="font-weight:400; color:var(--text-secondary);">JPMorgan</span></td><td>Finanzas</td><td>10%</td><td>$255</td><td style="color:#fff; font-weight:600;">+17%</td><td>Moderado</td><td>Berkshire, Pershing Sq</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">COST <span style="font-weight:400; color:var(--text-secondary);">Costco</span></td><td>Consumo</td><td>10%</td><td>$1,050</td><td style="color:#fff; font-weight:600;">+14%</td><td>Bajo</td><td>Renaissance, ARK</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">AVGO <span style="font-weight:400; color:var(--text-secondary);">Broadcom</span></td><td>Semicon.</td><td>10%</td><td>$215</td><td style="color:#fff; font-weight:600;">+20%</td><td>Alto</td><td>Citadel, Soros Fund</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="slide-small" style="margin-top: 1vh; color: var(--text-secondary); font-size: clamp(0.6rem, 0.9vw, 0.75rem);">+ 31% restante distribuido en LLY, AMZN, V, BRK.B y cash. Incluye tesis por posici&oacute;n, 3 escenarios a 24M y plan de rebalanceo trimestral.</p>
+                </div>
+            </div>
+        </div>
+        <p class="insight reveal d5">La IA puede ayudarte a pasar de una idea difusa a una tesis estructurada.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 8: FILTRAR OPORTUNIDADES (07)
+     Speaker notes: Screening is where AI shines. Show the screening
+     prompt, then break down the two sides: fundamentals + price/timing.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="7">
+    <div class="slide-inner">
+        <span class="section-label reveal d1">07 / Caso pr&aacute;ctico: Screener</span>
+        <h2 class="slide-h2 reveal d2">Screener de 3 capas</h2>
+        <p class="slide-small reveal d3" style="margin-bottom: 2vh; max-width: 55em;">Imagina tener 500 empresas del S&amp;P 500 frente a ti. El screener filtra ese universo y te dice cu&aacute;les cumplen criterios favorables a nivel fundamental, t&eacute;cnico y macroecon&oacute;mico al mismo tiempo. En lugar de revisar una por una, la IA cruza las tres capas en segundos y te entrega solo las que valen la pena analizar.</p>
+        <div class="grid-2 reveal d4" style="margin-bottom: 2vh;">
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Ejemplo de prompt</p>
+                <p class="prompt-text">De las empresas dentro del &iacute;ndice S&amp;P 500, filtra con tres capas:
+
+MACRO: Excluye sectores afectados por pol&iacute;tica monetaria restrictiva, aranceles o riesgos geopol&iacute;ticos. Prioriza sectores en fase favorable del ciclo econ&oacute;mico.
+
+FUNDAMENTAL: ROE > 15%, FCF recurrente 3 a&ntilde;os, deuda/EBITDA < 2x, crecimiento de ingresos > 5%, dividendos crecientes, insider buying &uacute;ltimos 90 d&iacute;as.
+
+T&Eacute;CNICO: RSI entre 30-40, precio por encima de la EMA 200, volumen institucional creciente, patr&oacute;n de acumulaci&oacute;n.
+
+Dame las acciones que pasen los tres filtros con: ticker, nombre, sector, m&eacute;tricas clave, precio actual, target y por qu&eacute; es oportunidad ahora.</p>
+            </div>
+            <div>
+                <p class="slide-h3 reveal d4" style="margin-bottom: 1.2vh;">Acciones que pasan los 3 filtros:</p>
+                <div class="card" title=" " style="padding: clamp(0.8rem, 1.5vw, 1.2rem); overflow-x: auto;">
+                    <table class="data-table" style="width: 100%; font-size: clamp(0.6rem, 0.95vw, 0.8rem);">
+                        <thead>
+                            <tr>
+                                <th>Acci&oacute;n</th>
+                                <th>Sector</th>
+                                <th>ROE</th>
+                                <th>RSI</th>
+                                <th>vs EMA200</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="color:#fff; font-weight:600;">UNH <span style="font-weight:400; color:var(--text-secondary);">UnitedHealth</span></td><td>Salud</td><td>24%</td><td>32</td><td>+3%</td><td style="color:#fff; font-weight:600;">+18%</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">PEP <span style="font-weight:400; color:var(--text-secondary);">PepsiCo</span></td><td>Consumo</td><td>17%</td><td>34</td><td>+5%</td><td style="color:#fff; font-weight:600;">+14%</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">TXN <span style="font-weight:400; color:var(--text-secondary);">Texas Instruments</span></td><td>Semicon.</td><td>19%</td><td>31</td><td>+2%</td><td style="color:#fff; font-weight:600;">+21%</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">MDT <span style="font-weight:400; color:var(--text-secondary);">Medtronic</span></td><td>Salud</td><td>16%</td><td>33</td><td>+4%</td><td style="color:#fff; font-weight:600;">+16%</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1.2vh; padding-top: 1vh; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; color: var(--accent-cyan); font-size: clamp(0.7rem, 1vw, 0.9rem); font-weight: 600;">De 500 empresas, solo 4 pasaron los tres filtros. Eso es precisi&oacute;n.</p>
+                </div>
+            </div>
+        </div>
+        <p class="insight reveal d5">No se trata de adivinar; se trata de filtrar mejor y decidir con m&aacute;s contexto.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 9: TU PORTAFOLIO BAJO LA LUPA (08)
+     Speaker notes: Now flip the script. Instead of building new, review
+     what they already have. Most losses come from bad structure, not
+     bad picks. The 2x2 grid makes it scannable.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="8">
+    <div class="slide-inner">
+        <span class="section-label reveal d1">08 / Caso pr&aacute;ctico: Tu portafolio bajo la lupa</span>
+        <h2 class="slide-h2 reveal d2">Revisa lo que ya tienes</h2>
+        <p class="slide-small reveal d3" style="margin-bottom: 2vh; max-width: 55em;">Si est&aacute;s perdiendo dinero, muchas veces no necesitas m&aacute;s ideas. Necesitas que alguien revise tu estructura con objetividad. La IA analiza tu portafolio actual y te dice exactamente d&oacute;nde est&aacute;n los problemas y c&oacute;mo corregirlos.</p>
+        <div class="grid-2 reveal d4">
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Ejemplo de prompt</p>
+                <p class="prompt-text">Revisa mi portafolio actual:
+AAPL: 40%, compra a $165, fecha: marzo 2025
+NVDA: 25%, compra a $850, fecha: enero 2025
+MSFT: 15%, compra a $410, fecha: abril 2025
+GOOGL: 10%, compra a $155, fecha: febrero 2025
+Cash: 10%
+Perfil: moderado, horizonte 24 meses.
+
+Necesito:
+1. P&amp;L actual por posici&oacute;n (ganancia/p&eacute;rdida)
+2. Concentraci&oacute;n sectorial y riesgo de correlaci&oacute;n
+3. Stress test: qu&eacute; pasa si tech cae 20%
+4. Rebalanceo con % concretos
+5. Activos de refugio sugeridos (bonos, oro, ETFs defensivos)
+6. Calificaci&oacute;n del portafolio (1-10) con justificaci&oacute;n</p>
+            </div>
+            <div>
+                <p class="slide-h3 reveal d4" style="margin-bottom: 1.2vh;">La IA te devuelve:</p>
+                <div class="card" title=" " style="padding: clamp(0.8rem, 1.5vw, 1.2rem);">
+                    <table class="data-table" style="width: 100%; font-size: clamp(0.6rem, 0.95vw, 0.8rem);">
+                        <thead>
+                            <tr>
+                                <th>Diagn&oacute;stico</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="color:#fff; font-weight:600;">P&amp;L actual</td><td>AAPL +8.2%, NVDA -12.4%, MSFT +3.1%, GOOGL +5.8%</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Concentraci&oacute;n</td><td>90% en Tech. Correlaci&oacute;n &gt;0.85 entre posiciones.</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Stress test -20%</td><td>P&eacute;rdida estimada: -18.3% del portafolio total.</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Rebalanceo</td><td>AAPL a 20%, NVDA a 12%. Liberar 23% para diversificar.</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Activos de refugio</td><td>TLT bonos (8%), GLD oro (5%), XLV salud (5%), SCHD dividendos (5%)</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Calificaci&oacute;n</td><td>4/10. Riesgo alto, sin cobertura, sin activos defensivos.</td></tr>
+                            <tr><td style="color: var(--accent-cyan); font-weight:600;">Recomendaci&oacute;n</td><td>Tomar ganancias parciales en AAPL, reducir NVDA, diversificar con refugio y sectores defensivos. Implementar stop-loss en todas las posiciones.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p class="insight reveal d5">La IA funciona como una segunda capa de an&aacute;lisis sobre tu propio trabajo.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 10: TU ASESOR POR $20/MES (09)
+     Speaker notes: This is the "value" slide. The comparison is stark.
+     Let the numbers speak. Daniel's quote from the transcript drives
+     it home.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="9">
+    <div class="glow-tr"></div>
+    <div class="slide-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 4rem); align-items: center;">
+        <div>
+            <span class="section-label reveal d1">09 / Tu asesor por $20/mes</span>
+            <h2 class="slide-h2 reveal d2">El asesor que antes no pod&iacute;as pagar</h2>
+            <ul class="bullet-list reveal d3" style="margin-bottom: 2.5vh;">
+                <li>Disponible 24/7, sin horarios de oficina ni citas</li>
+                <li>Procesa miles de datos por minuto: noticias, fundamentales, t&eacute;cnicos</li>
+                <li>Sin sesgos emocionales ni conflictos de inter&eacute;s</li>
+                <li>Analiza tu portafolio completo en segundos</li>
+                <li>Se adapta a tu perfil, tu idioma y tu nivel de experiencia</li>
+            </ul>
+            <p class="quote reveal d4" style="margin-bottom: 1.5vh;">"&iquest;Sabes cu&aacute;nto cuesta un asesor de la talla y la calidad que tiene la inteligencia artificial? Eso es lo que tenemos que revisar."</p>
+            <p class="insight reveal d5">Puedes tener tu propio analista financiero. La tecnolog&iacute;a ya est&aacute; aqu&iacute;.</p>
+        </div>
+        <div>
+            <div class="card" title=" " style="text-align: center; margin-bottom: clamp(1rem, 2vh, 1.5rem);" >
+                <p class="slide-small reveal d3" style="margin-bottom: 0.5vh; opacity: 0.6;">Asesor financiero tradicional</p>
+                <p class="reveal d3" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: #ffffff;">$5,000+</p>
+                <p class="slide-small reveal d3">por a&ntilde;o</p>
+            </div>
+            <div style="text-align: center; margin-bottom: clamp(1rem, 2vh, 1.5rem);">
+                <p class="slide-small reveal d4" style="opacity: 0.4;">vs</p>
+            </div>
+            <div class="card" title=" " style="text-align: center; border: 1px solid rgba(39,221,223,0.3);">
+                <p class="slide-small reveal d4" style="margin-bottom: 0.5vh; opacity: 0.6;">IA Premium (ChatGPT, Claude, Gemini)</p>
+                <p class="reveal d4" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: var(--accent-cyan);">~$20</p>
+                <p class="slide-small reveal d4">por mes</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 12: TU RUTINA DIARIA (11)
+     Speaker notes: Show the 5-step flow first, then the actual cron
+     prompt. Emphasize: consistency beats intensity. A good morning
+     routine is worth more than 10 random trades.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="10">
+    <div class="slide-inner">
+        <span class="section-label reveal d1">10 / Workflows de trading con IA</span>
+        <h2 class="slide-h2 reveal d2">Automatiza tu rutina diaria</h2>
+        <p class="slide-small reveal d3" style="margin-bottom: 2vh; max-width: 55em;">Con la IA puedes construir workflows que se ejecutan cada ma&ntilde;ana antes de operar. En lugar de pasar 2 horas revisando noticias, gr&aacute;ficos y reportes, un solo prompt te entrega un resumen ejecutivo con todo lo que necesitas para tomar decisiones informadas.</p>
+        <div class="grid-2 reveal d4">
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Prompt: Briefing pre-market diario</p>
+                <p class="prompt-text">Cada ma&ntilde;ana a las 7:00 AM antes de apertura, necesito un briefing ejecutivo:
+
+1. Calendario econ&oacute;mico del d&iacute;a con impacto esperado
+2. Noticias macro de las &uacute;ltimas 12 horas que afecten mis posiciones
+3. Contexto geopol&iacute;tico relevante para mercados
+4. An&aacute;lisis t&eacute;cnico r&aacute;pido: S&amp;P 500, Nasdaq y mis 5 posiciones
+5. Sentimiento del mercado: alcista, bajista o neutral con argumentos
+6. Nivel de riesgo recomendado para hoy (1-10)
+7. Acciones concretas: mantener, reducir, agregar o esperar
+
+Formato: directo, sin relleno, solo lo que necesito para decidir.</p>
+            </div>
+            <div>
+                <p class="slide-h3 reveal d4" style="margin-bottom: 1.2vh;">Lo que recibes cada ma&ntilde;ana:</p>
+                <div class="card" title=" " style="padding: clamp(0.8rem, 1.5vw, 1.2rem);">
+                    <table class="data-table" style="width: 100%; font-size: clamp(0.6rem, 0.95vw, 0.8rem);">
+                        <thead>
+                            <tr>
+                                <th>Secci&oacute;n</th>
+                                <th>Resumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="color:#fff; font-weight:600;">Calendario</td><td>CPI 8:30 AM (impacto alto), Earnings MSFT post-market</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Noticias</td><td>Fed mantiene tasas, China reduce aranceles en tech</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Geopol&iacute;tica</td><td>Tensi&oacute;n media, sin impacto directo en portafolio</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">T&eacute;cnico</td><td>S&amp;P en soporte 5,200. NVDA RSI 38. AAPL sobre EMA200</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Sentimiento</td><td>Neutral-alcista. Confianza: 6/10</td></tr>
+                            <tr><td style="color:#fff; font-weight:600;">Riesgo hoy</td><td>5/10. Volatilidad esperada por CPI</td></tr>
+                            <tr><td style="color: var(--accent-cyan); font-weight:600;">Acci&oacute;n</td><td>Mantener posiciones. No agregar antes del CPI. Stop-loss activos.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="slide-small reveal d5" style="margin-top: 1vh; color: var(--text-secondary);">Antes: 2 horas revisando fuentes. Ahora: 3 minutos. Un prompt. Todo listo.</p>
+            </div>
+        </div>
+        <p class="insight reveal d6">Una buena rutina reduce impulsividad y mejora consistencia.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 12: PROMPTS QUE PUEDES USAR HOY (11)
+     Speaker notes: Leave them with ready-to-use tools. Four prompts
+     they can copy-paste TODAY. Encourage experimentation.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="11">
+    <div class="glow-tr"></div>
+    <div class="slide-inner">
+        <span class="section-label reveal d1">11 / Prompts que puedes usar hoy</span>
+        <h2 class="slide-h2 reveal d2">Herramientas listas para usar</h2>
+        <p class="slide-small reveal d3" style="margin-bottom: 2vh; max-width: 55em;">Estos son prompts reales que puedes copiar, adaptar a tu perfil y usar hoy mismo. Cada uno est&aacute; dise&ntilde;ado para generar respuestas estructuradas y accionables.</p>
+        <div class="grid-2 reveal d4" style="margin-bottom: 1.5vh;">
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Construir portafolio</p>
+                <p class="prompt-text">Act&uacute;a como portfolio manager. Tengo $25,000, perfil moderado, horizonte 24 meses. Objetivo: superar al S&amp;P 500. Analiza 13F filings recientes de Berkshire y Bridgewater. Dame: distribuci&oacute;n por sector y activo con %, tesis por posici&oacute;n, escenarios a 24M, y plan de rebalanceo trimestral. No m&aacute;s del 30% en un solo sector. Formato: tabla.</p>
+            </div>
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Auditar portafolio existente</p>
+                <p class="prompt-text">Revisa mi portafolio: AAPL 40% (compra $165, mar-2025), NVDA 25% (compra $850, ene-2025), MSFT 15%, GOOGL 10%, cash 10%. Perfil moderado. Dame: P&amp;L por posici&oacute;n, concentraci&oacute;n sectorial, stress test si tech cae 20%, rebalanceo con % concretos, activos de refugio sugeridos, y calificaci&oacute;n 1-10.</p>
+            </div>
+        </div>
+        <div class="grid-2 reveal d5">
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">Briefing pre-market diario</p>
+                <p class="prompt-text">Cada ma&ntilde;ana a las 7 AM dame: calendario econ&oacute;mico del d&iacute;a con impacto, noticias macro de 12h que afecten mis posiciones [AAPL, NVDA, MSFT, GOOGL], contexto geopol&iacute;tico, t&eacute;cnico del S&amp;P 500 y Nasdaq, sentimiento (alcista/bajista/neutral con argumentos), riesgo del d&iacute;a (1-10), y acciones: mantener, reducir o agregar. Directo, sin relleno.</p>
+            </div>
+            <div class="card card--prompt" title=" ">
+                <p class="slide-small fw-600 text-cyan" style="margin-bottom: 1vh;">An&aacute;lisis de escenarios por acci&oacute;n</p>
+                <p class="prompt-text">Analiza NVDA a 12 meses. Dame: escenario alcista, base y bajista con probabilidades y targets de precio. Incluye: cat&aacute;lizadores para cada escenario, niveles t&eacute;cnicos clave (soporte, resistencia, EMA200), qu&eacute; indicadores vigilar para confirmar cada caso, y en qu&eacute; escenario deber&iacute;a vender, mantener o agregar.</p>
+            </div>
+        </div>
+        <p class="insight reveal d6">Lo importante no es copiar prompts; es aprender a pensar con estructura.</p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SLIDE 16: CLOSING — HYPE
+     Speaker notes: Build momentum. Three contrasts. Then the killer
+     question. Then announce what's next. End strong.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="slide slide--left" data-slide="12">
+    <div class="glow-tr"></div>
+    <div class="slide-inner" style="display: grid; grid-template-columns: 1fr clamp(200px, 28vw, 380px); gap: clamp(2rem, 4vw, 4rem); align-items: center;">
+        <div>
+            <span class="section-label reveal d1">12 / Cierre</span>
+            <h2 class="slide-h2 reveal d2">&iquest;Cu&aacute;nto est&aacute;s dejando en la mesa?</h2>
+            <ul class="bullet-list reveal d3" style="margin-bottom: 2.5vh;">
+                <li>Mientras t&uacute; analizas 3 empresas, la IA analiza 500.</li>
+                <li>Mientras t&uacute; revisas una noticia, ella cruza 1,000 fuentes.</li>
+                <li>Mientras t&uacute; tardas horas en un portafolio, ella lo estructura en segundos.</li>
+            </ul>
+            <p class="slide-h3 reveal d4" style="margin-bottom: 1.5vh;">La IA puede ayudarte a:</p>
+            <ul class="check-list reveal d4" style="margin-bottom: 2.5vh;">
+                <li>Entender mejor el mercado</li>
+                <li>Investigar con m&aacute;s profundidad</li>
+                <li>Estructurar mejores portafolios</li>
+                <li>Gestionar mejor el riesgo</li>
+                <li>Operar con m&aacute;s orden y disciplina</li>
+            </ul>
+            <div class="reveal d5" style="margin-bottom: 1.5vh;">
+                <p style="font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 700; color: #ffffff; margin-bottom: 0.5vh;">Daniel Muvdi</p>
+                <a href="https://x.com/DanielMuvdiYT" target="_blank" rel="noopener" class="x-link">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    @DanielMuvdiYT
+                </a>
+            </div>
+            <p class="insight reveal d6">La pregunta ya no es si deber&iacute;as usar inteligencia artificial. Es cu&aacute;ndo vas a empezar.</p>
+        </div>
+        <div class="reveal d3" style="overflow: hidden; border-radius: 16px; max-height: min(70vh, 500px);">
+            <img src="assets/ia-trading-closing.png" alt="IA y Trading" style="width: 100%; height: 100%; object-fit: cover; display: block; max-height: min(70vh, 500px);">
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    'use strict';
+
+    /* ─── SlidePresentation Class ─── */
+    class SlidePresentation {
+        constructor() {
+            this.slides = Array.from(document.querySelectorAll('.slide'));
+            this.total = this.slides.length;
+            this.current = 0;
+            this.isScrolling = false;
+            this.scrollCooldown = 800;
+            this.touchStartY = 0;
+            this.touchStartX = 0;
+
+            this.progressBar = document.getElementById('progressBar');
+            this.navDotsContainer = document.getElementById('navDots');
+            this.kbdHint = document.getElementById('kbdHint');
+
+            this.init();
+        }
+
+        init() {
+            this.createNavDots();
+            this.setupIntersectionObserver();
+            this.setupKeyboard();
+            this.setupWheel();
+            this.setupTouch();
+            this.goTo(0, false);
+
+            // Hide keyboard hint after 8 seconds
+            setTimeout(() => {
+                if (this.kbdHint) this.kbdHint.style.opacity = '0';
+            }, 8000);
+        }
+
+        createNavDots() {
+            for (let i = 0; i < this.total; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'nav-dot';
+                dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+                dot.addEventListener('click', () => this.goTo(i));
+                this.navDotsContainer.appendChild(dot);
+            }
+        }
+
+        setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                        const index = this.slides.indexOf(entry.target);
+                        if (index !== -1) {
+                            this.current = index;
+                            this.updateUI();
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            this.slides.forEach(slide => observer.observe(slide));
+        }
+
+        setupKeyboard() {
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'ArrowDown':
+                    case 'ArrowRight':
+                    case ' ':
+                    case 'PageDown':
+                        e.preventDefault();
+                        this.next();
+                        break;
+                    case 'ArrowUp':
+                    case 'ArrowLeft':
+                    case 'PageUp':
+                        e.preventDefault();
+                        this.prev();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        this.goTo(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        this.goTo(this.total - 1);
+                        break;
+                }
+            });
+        }
+
+        setupWheel() {
+            document.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (this.isScrolling) return;
+                this.isScrolling = true;
+
+                if (e.deltaY > 30) {
+                    this.next();
+                } else if (e.deltaY < -30) {
+                    this.prev();
+                }
+
+                setTimeout(() => { this.isScrolling = false; }, this.scrollCooldown);
+            }, { passive: false });
+        }
+
+        setupTouch() {
+            document.addEventListener('touchstart', (e) => {
+                this.touchStartY = e.touches[0].clientY;
+                this.touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            document.addEventListener('touchend', (e) => {
+                const deltaY = this.touchStartY - e.changedTouches[0].clientY;
+                const deltaX = this.touchStartX - e.changedTouches[0].clientX;
+
+                // Only respond to vertical swipes that are more vertical than horizontal
+                if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
+                    if (deltaY > 0) {
+                        this.next();
+                    } else {
+                        this.prev();
+                    }
+                }
+            }, { passive: true });
+        }
+
+        next() {
+            if (this.current < this.total - 1) {
+                this.goTo(this.current + 1);
+            }
+        }
+
+        prev() {
+            if (this.current > 0) {
+                this.goTo(this.current - 1);
+            }
+        }
+
+        goTo(index, smooth = true) {
+            if (index < 0 || index >= this.total) return;
+            this.current = index;
+            this.slides[index].scrollIntoView({
+                behavior: smooth ? 'smooth' : 'auto',
+                block: 'start'
+            });
+            this.updateUI();
+        }
+
+        updateUI() {
+            // Progress bar
+            const progress = ((this.current + 1) / this.total) * 100;
+            this.progressBar.style.width = progress + '%';
+
+            // Nav dots
+            const dots = this.navDotsContainer.querySelectorAll('.nav-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === this.current);
+            });
+
+            // Visible class for animations
+            this.slides.forEach((slide, i) => {
+                slide.classList.toggle('visible', i === this.current);
+            });
+        }
+    }
+
+    /* ─── Initialize ─── */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => new SlidePresentation());
+    } else {
+        new SlidePresentation();
+    }
+})();
+</script>
+
+</body>
+</html>
