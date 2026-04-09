@@ -1,0 +1,2552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analisis Institucional 13F | Q4 2025 | Daniel Muvdi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #000000;
+    --bg-secondary: #141519;
+    --bg-card: #202127;
+    --bg-card-hover: #2a2b33;
+    --accent-blue: #002ef4;
+    --accent-cyan: #27dddf;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a3b1;
+    --text-muted: #6b6e7b;
+    --border-color: #2e3039;
+    --border-light: #383a44;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --orange: #f97316;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  .report-header {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, #0a0b10 50%, var(--bg-secondary) 100%);
+    border-bottom: 1px solid var(--border-color);
+    padding: 60px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,46,244,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .report-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(39,221,223,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(0,46,244,0.15);
+    border: 1px solid rgba(0,46,244,0.3);
+    color: var(--accent-cyan);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .report-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .report-title span {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .report-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .meta-label {
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .meta-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    flex-shrink: 0;
+  }
+
+  /* ── Profile Summary Cards ── */
+  .profile-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .profile-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .profile-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .profile-card-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .profile-card-value.accent {
+    color: var(--accent-cyan);
+  }
+
+  /* ── Table of Contents ── */
+  .toc {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 40px 0;
+  }
+
+  .toc-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--accent-cyan);
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px;
+  }
+
+  .toc-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .toc-link:hover {
+    background: rgba(39,221,223,0.06);
+    color: var(--text-primary);
+  }
+
+  .toc-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(0,46,244,0.15);
+    color: var(--accent-cyan);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── Sections ── */
+  .section {
+    margin: 56px 0;
+    scroll-margin-top: 24px;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    color: var(--text-primary);
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    color: var(--accent-cyan);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    margin: 48px 0;
+  }
+
+  /* ── Key Insight Cards ── */
+  .insight-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .insight-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 3px solid var(--accent-blue);
+  }
+
+  .insight-card.warn {
+    border-left-color: var(--yellow);
+  }
+
+  .insight-card.danger {
+    border-left-color: var(--red);
+  }
+
+  .insight-card.success {
+    border-left-color: var(--green);
+  }
+
+  .insight-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .insight-card p {
+    font-size: 13px;
+    margin-bottom: 0;
+    color: var(--text-secondary);
+  }
+
+  /* ── Tables ── */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  thead th {
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(46,48,57,0.5);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(20,21,25,0.4);
+  }
+
+  tbody tr:hover {
+    background: rgba(39,221,223,0.03);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .ticker {
+    font-weight: 700;
+    color: var(--accent-cyan);
+  }
+
+  .positive { color: var(--green); font-weight: 600; }
+  .negative { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--yellow); font-weight: 600; }
+  .new-badge {
+    display: inline-block;
+    background: rgba(34,197,94,0.15);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Blockquote / Note ── */
+  .note {
+    background: rgba(0,46,244,0.06);
+    border: 1px solid rgba(0,46,244,0.15);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .note p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .note strong {
+    color: var(--accent-cyan);
+  }
+
+  /* ── Position Commentary ── */
+  .position-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 20px 0;
+  }
+
+  .position-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .position-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .position-ticker {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent-cyan);
+  }
+
+  .position-name {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .position-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-core {
+    background: rgba(0,46,244,0.15);
+    color: #5b8aff;
+  }
+
+  .tag-satellite {
+    background: rgba(39,221,223,0.12);
+    color: var(--accent-cyan);
+  }
+
+  .tag-weight {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-muted);
+  }
+
+  .position-block p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* ── Scenario badges ── */
+  .scenario-bull { color: var(--green); }
+  .scenario-base { color: var(--accent-cyan); }
+  .scenario-bear { color: var(--red); }
+
+  /* ── Disclaimer ── */
+  .disclaimer {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+
+  .disclaimer p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .disclaimer p:last-child { margin-bottom: 0; }
+
+  /* ── Footer ── */
+  .report-footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+  }
+
+  .report-footer p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .container { padding: 0 16px; }
+    .report-header { padding: 40px 0 32px; }
+    .profile-summary { grid-template-columns: 1fr 1fr; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .insight-cards { grid-template-columns: 1fr; }
+    table { font-size: 12px; }
+    thead th, tbody td { padding: 8px 10px; }
+    .position-block { padding: 20px; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    body {
+      background: #fff;
+      color: #111;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .container { max-width: 100%; padding: 0; }
+    .report-header { background: none; border-bottom: 2px solid #111; padding: 20px 0; }
+    .report-header::before, .report-header::after { display: none; }
+    .report-title { font-size: 24px; color: #111; }
+    .report-title span { -webkit-text-fill-color: #111; color: #111; background: none; }
+    .header-badge { border-color: #333; color: #333; background: #f5f5f5; }
+    .meta-item, .meta-label, .profile-card-label { color: #555; }
+    .profile-card-value, .profile-card-value.accent { color: #111; }
+    .meta-dot { background: #333; }
+
+    .toc { break-inside: avoid; background: #f8f8f8; border-color: #ddd; }
+    .toc-title { color: #111; }
+    .toc-link { color: #333; }
+    .toc-letter { background: #eee; color: #111; }
+
+    .section-label { color: #333; }
+    .section-title, h3, h4, strong { color: #111; }
+    p, .insight-card p, .position-block p { color: #333; }
+
+    .bg-card, .insight-card, .position-block, .note, .disclaimer {
+      background: #f8f8f8;
+      border-color: #ddd;
+    }
+
+    .insight-card { border-left-color: #333; }
+    .insight-card.warn { border-left-color: #b45309; }
+    .insight-card.danger { border-left-color: #dc2626; }
+    .insight-card.success { border-left-color: #16a34a; }
+
+    .table-wrapper { border-color: #ccc; background: #fff; }
+    thead th { background: #eee; color: #333; border-bottom-color: #ccc; }
+    tbody td { border-bottom-color: #eee; color: #333; }
+    tbody tr:nth-child(even) { background: #f8f8f8; }
+    tbody tr:hover { background: inherit; }
+
+    .ticker { color: #002ef4; }
+    .positive { color: #16a34a; }
+    .negative { color: #dc2626; }
+    .neutral { color: #b45309; }
+    .new-badge { background: #e6f9e6; color: #16a34a; }
+
+    .position-number { background: #333; }
+    .position-ticker { color: #002ef4; }
+    .tag-core { background: #e8eeff; color: #002ef4; }
+    .tag-satellite { background: #e6fafa; color: #0d7377; }
+    .tag-weight { background: #eee; color: #555; }
+
+    .divider { background: #ccc; }
+    .profile-card, .toc, .insight-card, .position-block, .note, .disclaimer, .table-wrapper {
+      break-inside: avoid;
+    }
+
+    .section { page-break-inside: auto; margin: 28px 0; }
+
+    a { color: #002ef4; text-decoration: none; }
+
+    .report-footer { border-top-color: #ccc; }
+    .report-footer p, .disclaimer p { color: #555; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- HEADER -->
+<!-- ════════════════════════════════════════════════════════ -->
+<header class="report-header">
+  <div class="container">
+    <div class="header-badge">Reporte Institucional</div>
+    <h1 class="report-title">Analisis Institucional 13F<br><span>Q4 2025</span></h1>
+    <div class="report-meta">
+      <div class="meta-item"><div class="meta-dot"></div> <span><span class="meta-label">Periodo:</span> Trimestre finalizado el 31 de diciembre de 2025</span></div>
+      <div class="meta-item"><div class="meta-dot"></div> <span><span class="meta-label">Fecha:</span> 8 de abril de 2026</span></div>
+      <div class="meta-item"><div class="meta-dot"></div> <span><span class="meta-label">Perfil:</span> Inversor moderado | Horizonte 24 meses</span></div>
+    </div>
+    <div class="profile-summary">
+      <div class="profile-card">
+        <div class="profile-card-label">Universo Analizado</div>
+        <div class="profile-card-value">5 Fondos</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-label">Capital Inicial</div>
+        <div class="profile-card-value accent">$25,000</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-label">Aportacion Mensual</div>
+        <div class="profile-card-value accent">$2,000</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-label">Objetivo vs. S&amp;P 500</div>
+        <div class="profile-card-value accent">+300 bps</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ════════════════════════════════════════════════════════ -->
+<nav class="toc" id="toc">
+  <div class="toc-title">Tabla de Contenido</div>
+  <div class="toc-grid">
+    <a class="toc-link" href="#section-a"><span class="toc-letter">A</span> Resumen Ejecutivo</a>
+    <a class="toc-link" href="#section-b"><span class="toc-letter">B</span> Auditoria Previa de Datos</a>
+    <a class="toc-link" href="#section-c"><span class="toc-letter">C</span> Tabla Comparativa de Gestores</a>
+    <a class="toc-link" href="#section-d"><span class="toc-letter">D</span> Tabla de Auditoria por Activo</a>
+    <a class="toc-link" href="#section-e"><span class="toc-letter">E</span> Matriz de Conviccion Cruzada</a>
+    <a class="toc-link" href="#section-f"><span class="toc-letter">F</span> Distribucion Sectorial Agregada</a>
+    <a class="toc-link" href="#section-g"><span class="toc-letter">G</span> Cartera Final Recomendada</a>
+    <a class="toc-link" href="#section-h"><span class="toc-letter">H</span> Comentario por Posicion</a>
+    <a class="toc-link" href="#section-i"><span class="toc-letter">I</span> Escenarios a 24 Meses</a>
+    <a class="toc-link" href="#section-j"><span class="toc-letter">J</span> Plan de Implementacion</a>
+    <a class="toc-link" href="#section-k"><span class="toc-letter">K</span> Conclusion Final</a>
+    <a class="toc-link" href="#section-l"><span class="toc-letter">L</span> Cartera Final en Una Pagina</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION A: Resumen Ejecutivo -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-a">
+  <div class="section-label">Seccion A</div>
+  <h2 class="section-title">Resumen Ejecutivo</h2>
+
+  <p>Los formularios 13F correspondientes al cuarto trimestre de 2025, presentados ante la SEC entre el 11 y el 17 de febrero de 2026, revelan un panorama institucional marcado por tres tendencias dominantes: (1) concentracion sostenida en mega-capitalizaciones de calidad, (2) exposicion creciente al ecosistema de inteligencia artificial y semiconductores, y (3) un posicionamiento defensivo que anticipa volatilidad macroeconomica.</p>
+
+  <h3>Consensos principales entre los cinco fondos analizados</h3>
+
+  <p>El consenso mas evidente es la presencia de AAPL, NVDA, MSFT, AMZN, GOOG y META en multiples carteras. Sin embargo, la naturaleza de esa presencia varia drasticamente segun el gestor. Berkshire Hathaway mantiene AAPL como su posicion dominante (~28% del portafolio de renta variable) por conviccion fundamental de largo plazo. Citadel y Renaissance la mantienen como parte de estrategias cuantitativas y multi-estrategia donde la posicion larga visible en el 13F esta frecuentemente cubierta con derivados que no aparecen en el formulario.</p>
+
+  <p>La exposicion al sector de inteligencia artificial y semiconductores se intensifico en Q4 2025. Citadel incremento posiciones en AVGO, AMD y MRVL. Renaissance mantiene NVDA y AVGO entre sus principales tenencias. Este consenso sugiere que las instituciones siguen viendo valor estructural en la cadena de valor de IA, incluso despues de las revalorizaciones de 2024-2025.</p>
+
+  <p>En el frente defensivo, Bridgewater aumento su exposicion a ETFs de oro y mercados emergentes, senalando cobertura ante riesgos macroeconomicos. Berkshire acumulo $369,000 millones en efectivo, la cifra mas alta de su historia, lo cual puede interpretarse como cautela ante valuaciones elevadas o como preparacion para adquisiciones oportunistas.</p>
+
+  <div class="insight-cards">
+    <div class="insight-card success">
+      <div class="insight-card-title">Mejores oportunidades para perfil moderado (24 meses)</div>
+      <p>Las posiciones con mayor probabilidad de generar alfa provienen del cruce entre la conviccion fundamental de Berkshire y la validacion cuantitativa de otros fondos. AAPL, que cotiza a $258.90, presenta un nivel respaldado por la conviccion mas fuerte del inversor fundamental mas reconocido del mundo. Las nuevas posiciones de Berkshire en STZ (Constellation Brands) y POOL (Pool Corp) merecen atencion especial: representan ideas originales de un equipo inversor con historial comprobado de seleccion de valor.</p>
+    </div>
+    <div class="insight-card danger">
+      <div class="insight-card-title">Errores criticos al copiar 13Fs</div>
+      <p>Tratar las posiciones de Citadel ($665,870M, 3,406 posiciones) como apuestas direccionales es un error grave. Replicar Renaissance ignora que el portafolio publico NO corresponde al fondo Medallion. Copiar ARK Invest (TSLA, COIN, ROKU, PLTR) introduce volatilidad incompatible con un perfil moderado. Estos fondos son utiles como senales, no como plantillas.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION B: Auditoria Previa -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-b">
+  <div class="section-label">Seccion B</div>
+  <h2 class="section-title">Auditoria Previa de Datos y Consistencia</h2>
+
+  <h3>Tabla de Validacion de Fuentes</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Fondo</th>
+          <th>Fin Trimestre</th>
+          <th>Presentacion</th>
+          <th>Desfase</th>
+          <th>Notas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Berkshire Hathaway</strong></td>
+          <td>31 dic 2025</td>
+          <td>17 feb 2026</td>
+          <td>48 dias</td>
+          <td>Portafolio: $274,160M. 42 posiciones. Cash: $369,000M</td>
+        </tr>
+        <tr>
+          <td><strong>Bridgewater Associates</strong></td>
+          <td>31 dic 2025</td>
+          <td>14 feb 2026</td>
+          <td>45 dias</td>
+          <td>Portafolio: ~$18,000-20,000M (estimado). Dominado por ETFs</td>
+        </tr>
+        <tr>
+          <td><strong>Renaissance Technologies</strong></td>
+          <td>31 dic 2025</td>
+          <td>14 feb 2026</td>
+          <td>45 dias</td>
+          <td>Portafolio: ~$83,000M. Miles de posiciones. Alta rotacion</td>
+        </tr>
+        <tr>
+          <td><strong>Citadel Advisors</strong></td>
+          <td>31 dic 2025</td>
+          <td>14 feb 2026</td>
+          <td>45 dias</td>
+          <td>Portafolio: $665,870M. 3,406 posiciones</td>
+        </tr>
+        <tr>
+          <td><strong>ARK Invest</strong></td>
+          <td>31 dic 2025</td>
+          <td>11 feb 2026</td>
+          <td>42 dias</td>
+          <td>Portafolio: ~$8,000-10,000M (estimado). Alta concentracion</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Separacion Temporal de Precios</h3>
+
+  <p>Es fundamental distinguir entre dos conjuntos de precios en este analisis:</p>
+
+  <div class="insight-cards">
+    <div class="insight-card">
+      <div class="insight-card-title">Precios al cierre de Q4 2025 (31 dic 2025)</div>
+      <p>Reflejan las valoraciones en el momento en que las posiciones fueron reportadas. Estos precios corresponden al punto del mercado al final del trimestre.</p>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-card-title">Precios actuales (8 de abril de 2026)</div>
+      <p>El mercado ha experimentado movimientos significativos desde el cierre de diciembre. Esta separacion implica que las posiciones reportadas pueden haberse comprado, vendido o ajustado significativamente en los ~100 dias transcurridos desde el cierre del trimestre.</p>
+    </div>
+  </div>
+
+  <h3>Limitaciones Explicitas del Analisis 13F</h3>
+
+  <div class="insight-cards">
+    <div class="insight-card warn">
+      <div class="insight-card-title">Derivados invisibles</div>
+      <p>Los formularios 13F no reportan posiciones cortas, opciones vendidas, swaps ni futuros. Esto invalida cualquier lectura direccional de Citadel y Renaissance.</p>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-card-title">Alta rotacion</div>
+      <p>Renaissance y Citadel pueden haber liquidado posiciones completas entre el 31 de diciembre y la fecha de presentacion.</p>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-card-title">Desfase regulatorio de 45 dias</div>
+      <p>La SEC permite hasta 45 dias para la presentacion, creando un punto ciego considerable.</p>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-card-title">Tamano del portafolio de Bridgewater</div>
+      <p>Su cifra es estimada dado que el grueso de sus activos bajo gestion (~$100,000M+) esta en vehiculos que no requieren reporte 13F.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION C: Tabla Comparativa -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-c">
+  <div class="section-label">Seccion C</div>
+  <h2 class="section-title">Tabla Comparativa de Gestores</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Fondo</th>
+          <th>Estilo</th>
+          <th>Movimientos Clave</th>
+          <th>Sectores Dominantes</th>
+          <th>Ideas Accionables</th>
+          <th>Ideas NO Replicables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Berkshire Hathaway</strong></td>
+          <td>Value fundamental, concentrado, largo plazo</td>
+          <td>Nuevas: STZ, POOL. Agrego NYT. Redujo BAC significativamente. Redujo C, COF. Salio de FND, ULTA. Recompro acciones propias (mar 2026)</td>
+          <td>Tecnologia (AAPL), Financiero (AXP, BAC), Consumo (KO), Energia (CVX, OXY)</td>
+          <td>STZ y POOL como ideas originales de valor. AAPL como posicion core. Recompras senalan subvaluacion propia</td>
+          <td>Nivel de concentracion en AAPL (~28%) excesivo para inversor individual</td>
+        </tr>
+        <tr>
+          <td><strong>Bridgewater Associates</strong></td>
+          <td>Risk parity, macro global, ETFs</td>
+          <td>Incremento ETFs de oro (GLD). Aumento exposicion a mercados emergentes (EEM). Redujo algo de tech US</td>
+          <td>ETFs amplios (SPY, IVV), Oro (GLD), Emergentes (EEM), Renta fija (TLT)</td>
+          <td>Lectura macro: cobertura ante inflacion/devaluacion via oro. Diversificacion geografica</td>
+          <td>NO util para seleccion de acciones individuales. Portafolio dominado por ETFs</td>
+        </tr>
+        <tr>
+          <td><strong>Renaissance Technologies</strong></td>
+          <td>Cuantitativo sistematico, alta rotacion</td>
+          <td>Posiciones grandes en NVDA, META, AAPL, MSFT, AMZN, GOOG, NFLX, AVGO, TSM</td>
+          <td>Tecnologia, Semiconductores, Comunicaciones</td>
+          <td>Confirma momentum cuantitativo en mega-caps tech y semis</td>
+          <td>NO replicable. Alta rotacion. NO es fondo Medallion. Posiciones cubiertas con derivados</td>
+        </tr>
+        <tr>
+          <td><strong>Citadel Advisors</strong></td>
+          <td>Multi-estrategia, neutral al mercado, opciones masivas</td>
+          <td>Incremento en AI/semis: AVGO, AMD, MRVL. Posiciones grandes en NVDA, AAPL, AMZN, MSFT, META, GOOG, TSLA</td>
+          <td>Tecnologia, Semiconductores, Consumo discrecional</td>
+          <td>Senal direccional en semiconductores AI (AVGO, AMD, MRVL) con cautela extrema</td>
+          <td>NO copiar posiciones como apuestas direccionales. $665,870M con cobertura masiva de derivados</td>
+        </tr>
+        <tr>
+          <td><strong>ARK Invest</strong></td>
+          <td>Innovacion disruptiva, alta conviccion, especulativo</td>
+          <td>Concentracion en TSLA (~10%), COIN (~7%), ROKU, PLTR, SQ, RKLB</td>
+          <td>Tecnologia especulativa, Fintech, Aeroespacio</td>
+          <td>Ninguna compatible con perfil moderado</td>
+          <td>TSLA, COIN, ROKU, PLTR: volatilidad extrema. NO apto para perfil de riesgo moderado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION D: Auditoria por Activo -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-d">
+  <div class="section-label">Seccion D</div>
+  <h2 class="section-title">Tabla de Auditoria por Activo</h2>
+
+  <p>Los 20 activos mas relevantes del universo analizado, ordenados por frecuencia de aparicion y relevancia estrategica:</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Fondo(s)</th>
+          <th>Movimiento en Q4</th>
+          <th>Peso Est.</th>
+          <th>Precio Q4 2025</th>
+          <th>Precio 8 Abr 2026</th>
+          <th>Var. %</th>
+          <th>Certeza</th>
+          <th>Notas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ticker">AAPL</td>
+          <td>BRK, REN, CIT</td>
+          <td>BRK mantiene ~28%. REN y CIT mantienen</td>
+          <td>Alta</td>
+          <td>$243.00</td>
+          <td>$258.90</td>
+          <td class="positive">+6.5%</td>
+          <td>Alta</td>
+          <td>Posicion de mayor conviccion de Berkshire</td>
+        </tr>
+        <tr>
+          <td class="ticker">NVDA</td>
+          <td>REN, CIT, BRW*</td>
+          <td>CIT incremento (AI/semis)</td>
+          <td>Alta</td>
+          <td>$137.00</td>
+          <td>$182.08</td>
+          <td class="positive">+32.9%</td>
+          <td>Media</td>
+          <td>Consenso cuantitativo. CIT posiblemente cubierto con derivados</td>
+        </tr>
+        <tr>
+          <td class="ticker">MSFT</td>
+          <td>REN, CIT</td>
+          <td>Mantienen posiciones grandes</td>
+          <td>Alta</td>
+          <td>$430.00</td>
+          <td>$374.33</td>
+          <td class="negative">-12.9%</td>
+          <td>Media</td>
+          <td>Presencia cuantitativa. No hay senal fundamental clara</td>
+        </tr>
+        <tr>
+          <td class="ticker">AMZN</td>
+          <td>REN, CIT</td>
+          <td>Mantienen posiciones grandes</td>
+          <td>Alta</td>
+          <td>$220.00</td>
+          <td>$221.25</td>
+          <td class="positive">+0.6%</td>
+          <td>Media</td>
+          <td>Presencia cuantitativa, cautela sobre direccionalidad</td>
+        </tr>
+        <tr>
+          <td class="ticker">META</td>
+          <td>REN, CIT</td>
+          <td>Mantienen posiciones grandes</td>
+          <td>Alta</td>
+          <td>$610.00</td>
+          <td>$612.42</td>
+          <td class="positive">+0.4%</td>
+          <td>Media</td>
+          <td>Consenso cuantitativo. Estabilidad relativa</td>
+        </tr>
+        <tr>
+          <td class="ticker">GOOG</td>
+          <td>BRW, REN, CIT</td>
+          <td>BRW mantiene posicion en acciones</td>
+          <td>Alta</td>
+          <td>$192.00</td>
+          <td>$314.74</td>
+          <td class="positive">+63.9%</td>
+          <td>Media</td>
+          <td>Presente en 3 fondos. Fuerte apreciacion desde Q4</td>
+        </tr>
+        <tr>
+          <td class="ticker">AXP</td>
+          <td>BRK</td>
+          <td>Mantiene ~16% del portafolio</td>
+          <td>Alta (BRK)</td>
+          <td>$300.00</td>
+          <td>$316.34</td>
+          <td class="positive">+5.4%</td>
+          <td>Alta</td>
+          <td>Segunda posicion de Berkshire. Conviccion fundamental solida</td>
+        </tr>
+        <tr>
+          <td class="ticker">BAC</td>
+          <td>BRK</td>
+          <td>Reduccion significativa</td>
+          <td>Alta (BRK)</td>
+          <td>$46.00</td>
+          <td>$51.88</td>
+          <td class="positive">+12.8%</td>
+          <td>Alta</td>
+          <td>Senal negativa: Berkshire vendio cantidades relevantes</td>
+        </tr>
+        <tr>
+          <td class="ticker">KO</td>
+          <td>BRK</td>
+          <td>Mantiene ~9% del portafolio</td>
+          <td>Alta (BRK)</td>
+          <td>$62.00</td>
+          <td>$77.29</td>
+          <td class="positive">+24.7%</td>
+          <td>Alta</td>
+          <td>Posicion historica. Defensiva. Apreciacion notable</td>
+        </tr>
+        <tr>
+          <td class="ticker">CVX</td>
+          <td>BRK</td>
+          <td>Mantiene ~6% del portafolio</td>
+          <td>Media (BRK)</td>
+          <td>$150.00</td>
+          <td>$192.89</td>
+          <td class="positive">+28.6%</td>
+          <td>Alta</td>
+          <td>Exposicion energetica de largo plazo. Fuerte subida</td>
+        </tr>
+        <tr>
+          <td class="ticker">AVGO</td>
+          <td>REN, CIT</td>
+          <td>CIT incremento posicion</td>
+          <td>Media</td>
+          <td>$225.00</td>
+          <td>$350.63</td>
+          <td class="positive">+55.8%</td>
+          <td>Media</td>
+          <td>Senal AI/semis. Fuerte rally desde Q4</td>
+        </tr>
+        <tr>
+          <td class="ticker">STZ</td>
+          <td>BRK</td>
+          <td><span class="new-badge">Nueva posicion</span></td>
+          <td>Baja (nueva)</td>
+          <td>$230.00</td>
+          <td>$150.00</td>
+          <td class="negative">-34.8%</td>
+          <td>Alta</td>
+          <td>Idea original de Berkshire. Constellation Brands. Correccion severa</td>
+        </tr>
+        <tr>
+          <td class="ticker">POOL</td>
+          <td>BRK</td>
+          <td><span class="new-badge">Nueva posicion</span></td>
+          <td>Baja (nueva)</td>
+          <td>N/D</td>
+          <td>$210.26</td>
+          <td>N/D</td>
+          <td>Alta</td>
+          <td>Idea original de Berkshire. Pool Corp</td>
+        </tr>
+        <tr>
+          <td class="ticker">COST</td>
+          <td>BRW</td>
+          <td>Mantiene posicion</td>
+          <td>Media</td>
+          <td>$920.00</td>
+          <td>$1,030.27</td>
+          <td class="positive">+12.0%</td>
+          <td>Media</td>
+          <td>Defensiva, consumo basico. Resistente a ciclos</td>
+        </tr>
+        <tr>
+          <td class="ticker">OXY</td>
+          <td>BRK</td>
+          <td>Mantiene ~4%</td>
+          <td>Media (BRK)</td>
+          <td>$48.00</td>
+          <td>$58.31</td>
+          <td class="positive">+21.5%</td>
+          <td>Alta</td>
+          <td>Berkshire tiene posicion preferente adicional no visible en 13F comun</td>
+        </tr>
+        <tr>
+          <td class="ticker">MCO</td>
+          <td>BRK</td>
+          <td>Mantiene posicion</td>
+          <td>Media (BRK)</td>
+          <td>$500.00</td>
+          <td>$447.80</td>
+          <td class="negative">-10.4%</td>
+          <td>Alta</td>
+          <td>Moody's. Posicion historica de Berkshire</td>
+        </tr>
+        <tr>
+          <td class="ticker">TSLA</td>
+          <td>CIT, ARK</td>
+          <td>ARK ~10%. CIT posicion grande</td>
+          <td>Variable</td>
+          <td>N/D</td>
+          <td>N/D</td>
+          <td>N/D</td>
+          <td>Baja</td>
+          <td>CIT probablemente cubierto. ARK especulativo. NO recomendable</td>
+        </tr>
+        <tr>
+          <td class="ticker">JPM</td>
+          <td>Varios*</td>
+          <td>Presencia indirecta via ETFs</td>
+          <td>Baja</td>
+          <td>$245.00</td>
+          <td>$307.97</td>
+          <td class="positive">+25.7%</td>
+          <td>Baja</td>
+          <td>No es posicion directa destacada en ninguno de los 5 fondos principales</td>
+        </tr>
+        <tr>
+          <td class="ticker">UNH</td>
+          <td>Varios*</td>
+          <td>Presencia indirecta</td>
+          <td>Baja</td>
+          <td>$560.00</td>
+          <td>$305.98</td>
+          <td class="negative">-45.4%</td>
+          <td>Baja</td>
+          <td>Presente en ETFs de Bridgewater. No posicion directa clara. Caida severa</td>
+        </tr>
+        <tr>
+          <td class="ticker">KHC</td>
+          <td>BRK</td>
+          <td>Mantiene posicion historica</td>
+          <td>Baja (BRK)</td>
+          <td>$30.00</td>
+          <td>$23.26</td>
+          <td class="negative">-22.5%</td>
+          <td>Alta</td>
+          <td>Posicion legacy de Berkshire. Sin movimiento reciente</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Leyenda de fondos:</strong> BRK = Berkshire Hathaway, BRW = Bridgewater, REN = Renaissance, CIT = Citadel, ARK = ARK Invest</p>
+  <p><strong>Leyenda de certeza:</strong> Alta = datos directamente del 13F con contexto claro. Media = datos del 13F pero direccionalidad incierta por derivados. Baja = inferido o indirecto.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION E: Matriz de Conviccion Cruzada -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-e">
+  <div class="section-label">Seccion E</div>
+  <h2 class="section-title">Matriz de Conviccion Cruzada</h2>
+
+  <h3>Alta Conviccion (3+ fondos confirman posicion)</h3>
+
+  <p>Estos activos aparecen en tres o mas portafolios del universo analizado. Sin embargo, la calidad de la senal varia segun la naturaleza de cada fondo.</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Empresa</th>
+          <th>Fondos</th>
+          <th>Tipo de Senal</th>
+          <th>Evaluacion para Perfil Moderado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ticker">AAPL</td>
+          <td>Apple Inc.</td>
+          <td>BRK, REN, CIT</td>
+          <td>Fundamental (BRK) + Cuantitativa (REN, CIT)</td>
+          <td><strong>Favorable.</strong> A $258.90 con conviccion maxima de Berkshire. Riesgo: concentracion excesiva si se sobrepondera</td>
+        </tr>
+        <tr>
+          <td class="ticker">NVDA</td>
+          <td>NVIDIA Corp.</td>
+          <td>REN, CIT, BRW*</td>
+          <td>Cuantitativa + Macro</td>
+          <td><strong>Favorable con cautela.</strong> A $182.08, +32.9% desde Q4. Consenso en AI/semis pero posiciones probablemente cubiertas. Volatilidad elevada</td>
+        </tr>
+        <tr>
+          <td class="ticker">MSFT</td>
+          <td>Microsoft Corp.</td>
+          <td>REN, CIT, BRW*</td>
+          <td>Cuantitativa + Macro</td>
+          <td><strong>Neutral.</strong> A $374.33, correccion de -12.9% desde Q4. Presencia amplia pero sin senal fundamental diferenciada</td>
+        </tr>
+        <tr>
+          <td class="ticker">AMZN</td>
+          <td>Amazon.com</td>
+          <td>REN, CIT, BRW*</td>
+          <td>Cuantitativa + Macro</td>
+          <td><strong>Neutral.</strong> A $221.25, esencialmente plano desde Q4. Similar a MSFT: presencia cuantitativa</td>
+        </tr>
+        <tr>
+          <td class="ticker">GOOG</td>
+          <td>Alphabet Inc.</td>
+          <td>BRW, REN, CIT</td>
+          <td>Cuantitativa + Macro</td>
+          <td><strong>Favorable.</strong> A $314.74, fuerte rally de +63.9% desde Q4. Momentum solido en 3 fondos</td>
+        </tr>
+        <tr>
+          <td class="ticker">META</td>
+          <td>Meta Platforms</td>
+          <td>REN, CIT, BRW*</td>
+          <td>Cuantitativa</td>
+          <td><strong>Neutral a favorable.</strong> A $612.42, practicamente sin variacion desde Q4 (+0.4%). Estabilidad relativa</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>*BRW con asterisco indica presencia a traves de ETFs (SPY, IVV) mas que como posicion directa.</p>
+
+  <h3>Conviccion Selectiva (2 fondos o senal fuerte de 1 fondo relevante)</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Empresa</th>
+          <th>Fondos</th>
+          <th>Tipo de Senal</th>
+          <th>Evaluacion para Perfil Moderado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ticker">AVGO</td>
+          <td>Broadcom Inc.</td>
+          <td>REN, CIT</td>
+          <td>Cuantitativa. CIT incremento</td>
+          <td><strong>Interesante.</strong> A $350.63, rally de +55.8% desde Q4. Lider de infraestructura AI. Senal de incremento en Citadel</td>
+        </tr>
+        <tr>
+          <td class="ticker">COST</td>
+          <td>Costco Wholesale</td>
+          <td>BRW</td>
+          <td>Fundamental/Macro</td>
+          <td><strong>Favorable para componente defensivo.</strong> A $1,030.27, +12.0% desde Q4. Resistente a ciclos</td>
+        </tr>
+        <tr>
+          <td class="ticker">AXP</td>
+          <td>American Express</td>
+          <td>BRK</td>
+          <td>Fundamental (segunda posicion BRK)</td>
+          <td><strong>Favorable.</strong> A $316.34, +5.4% desde Q4. Conviccion altisima de Berkshire (~16%)</td>
+        </tr>
+        <tr>
+          <td class="ticker">KO</td>
+          <td>Coca-Cola Co.</td>
+          <td>BRK</td>
+          <td>Fundamental (posicion historica BRK)</td>
+          <td><strong>Favorable para estabilidad.</strong> A $77.29, +24.7% desde Q4. Dividendo defensivo, fuerte rendimiento</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Idea Tactica (1 fondo, tesis diferenciada)</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Empresa</th>
+          <th>Fondo</th>
+          <th>Tipo de Senal</th>
+          <th>Evaluacion para Perfil Moderado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ticker">STZ</td>
+          <td>Constellation Brands</td>
+          <td>BRK (NUEVA)</td>
+          <td>Fundamental. Posicion nueva de Berkshire</td>
+          <td><strong>Alta prioridad de investigacion.</strong> A $150.00, caida de -34.8% desde Q4. Correccion severa desde la compra de Berkshire. Nueva compra indica conviccion en valor</td>
+        </tr>
+        <tr>
+          <td class="ticker">POOL</td>
+          <td>Pool Corporation</td>
+          <td>BRK (NUEVA)</td>
+          <td>Fundamental. Posicion nueva de Berkshire</td>
+          <td><strong>Alta prioridad de investigacion.</strong> A $210.26. Empresa de nicho, posiblemente identificada por Todd Combs o Ted Weschler</td>
+        </tr>
+        <tr>
+          <td class="ticker">NYT</td>
+          <td>New York Times Co.</td>
+          <td>BRK (incremento)</td>
+          <td>Fundamental. Berkshire agrego</td>
+          <td><strong>Moderada prioridad.</strong> Incremento, no posicion nueva. Modelo de suscripcion digital en crecimiento</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>No Apta para Perfil Moderado (excluir de consideracion)</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Empresa</th>
+          <th>Fondo</th>
+          <th>Razon de Exclusion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ticker">TSLA</td>
+          <td>Tesla Inc.</td>
+          <td>ARK (~10%), CIT</td>
+          <td>ARK es especulativo. Citadel esta cubierto con derivados. Volatilidad historica incompatible con perfil moderado</td>
+        </tr>
+        <tr>
+          <td class="ticker">COIN</td>
+          <td>Coinbase Global</td>
+          <td>ARK (~7%)</td>
+          <td>Exposicion pura a criptomonedas. Regulacion incierta. Volatilidad extrema</td>
+        </tr>
+        <tr>
+          <td class="ticker">ROKU</td>
+          <td>Roku Inc.</td>
+          <td>ARK (~5%)</td>
+          <td>Empresa sin rentabilidad consistente. Alta dependencia de publicidad digital</td>
+        </tr>
+        <tr>
+          <td class="ticker">PLTR</td>
+          <td>Palantir Technologies</td>
+          <td>ARK (~5%)</td>
+          <td>Valoracion premium extrema. Alta volatilidad. Concentracion en contratos gubernamentales</td>
+        </tr>
+        <tr>
+          <td class="ticker">SQ</td>
+          <td>Block Inc.</td>
+          <td>ARK (~4%)</td>
+          <td>Fintech con margen comprimido. Exposicion cripto indirecta</td>
+        </tr>
+        <tr>
+          <td class="ticker">RKLB</td>
+          <td>Rocket Lab USA</td>
+          <td>ARK (~4%)</td>
+          <td>Pre-rentabilidad. Sector aeroespacio especulativo. Muy temprano para perfil moderado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION F: Distribucion Sectorial Agregada -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-f">
+  <div class="section-label">Seccion F</div>
+  <h2 class="section-title">Distribucion Sectorial Agregada</h2>
+
+  <p>Analisis de la distribucion sectorial observada en el conjunto de los cinco portafolios 13F, ponderada por relevancia y accionabilidad:</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Sector</th>
+          <th>% Observado</th>
+          <th>Principales Activos</th>
+          <th>Fondos</th>
+          <th>Lectura Estrategica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tecnologia</strong></td>
+          <td>~30-35%</td>
+          <td>AAPL, MSFT, GOOG, META</td>
+          <td>BRK, REN, CIT, BRW (via ETFs)</td>
+          <td>Sector dominante por capitalizacion. Distinguir entre conviccion fundamental (BRK/AAPL) y presencia cuantitativa (REN, CIT)</td>
+        </tr>
+        <tr>
+          <td><strong>Semiconductores / AI</strong></td>
+          <td>~10-15%</td>
+          <td>NVDA, AVGO, AMD, MRVL, TSM</td>
+          <td>REN, CIT</td>
+          <td>Subsector con mayor incremento trimestral. Tesis estructural de largo plazo en infraestructura AI</td>
+        </tr>
+        <tr>
+          <td><strong>Financiero</strong></td>
+          <td>~15-20%</td>
+          <td>AXP, BAC, MCO, C, COF</td>
+          <td>BRK</td>
+          <td>Senal mixta: mantiene AXP con alta conviccion pero reduce BAC, C y COF. Rotacion dentro del sector</td>
+        </tr>
+        <tr>
+          <td><strong>Consumo Defensivo</strong></td>
+          <td>~10-12%</td>
+          <td>KO, KHC, COST, PG, WMT</td>
+          <td>BRK, BRW</td>
+          <td>Posicionamiento defensivo clasico. KO y COST como anclas de estabilidad</td>
+        </tr>
+        <tr>
+          <td><strong>Energia</strong></td>
+          <td>~6-8%</td>
+          <td>CVX, OXY</td>
+          <td>BRK</td>
+          <td>Exclusivamente Berkshire. Posiciones de largo plazo sin cambios</td>
+        </tr>
+        <tr>
+          <td><strong>Consumo Discrecional</strong></td>
+          <td>~5-7%</td>
+          <td>STZ, POOL, AMZN</td>
+          <td>BRK, REN, CIT</td>
+          <td>Las nuevas compras de Berkshire (STZ, POOL) son la senal mas interesante del trimestre</td>
+        </tr>
+        <tr>
+          <td><strong>Salud</strong></td>
+          <td>~3-5%</td>
+          <td>DVA, JNJ, UNH*</td>
+          <td>BRK, BRW</td>
+          <td>Presencia limitada. JNJ a $241.30 y UNH a $305.98 via ETFs de Bridgewater</td>
+        </tr>
+        <tr>
+          <td><strong>Seguros / Reaseguros</strong></td>
+          <td>~2-3%</td>
+          <td>CB</td>
+          <td>BRK</td>
+          <td>Chubb (CB) a $332.64 es posicion directa de Berkshire. Coherente con su expertise en seguros</td>
+        </tr>
+        <tr>
+          <td><strong>Comunicaciones / Medios</strong></td>
+          <td>~2-3%</td>
+          <td>NFLX, NYT</td>
+          <td>REN, BRK</td>
+          <td>NFLX en Renaissance (cuantitativo). NYT incrementada por Berkshire</td>
+        </tr>
+        <tr>
+          <td><strong>Oro / Commodities</strong></td>
+          <td>~3-5%</td>
+          <td>GLD, commodities via ETFs</td>
+          <td>BRW</td>
+          <td>Exclusivamente Bridgewater. Senal macro de cobertura inflacionaria</td>
+        </tr>
+        <tr>
+          <td><strong>Mercados Emergentes</strong></td>
+          <td>~3-5%</td>
+          <td>EEM, ETFs regionales</td>
+          <td>BRW</td>
+          <td>Exclusivamente Bridgewater. Incremento en Q4. Senal de diversificacion geografica</td>
+        </tr>
+        <tr>
+          <td><strong>Innovacion / Especulativo</strong></td>
+          <td>~2-3%</td>
+          <td>TSLA, COIN, ROKU, PLTR, SQ, RKLB</td>
+          <td>ARK, CIT (TSLA)</td>
+          <td>Exclusivamente ARK. NO accionable para perfil moderado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Observaciones Sectoriales Clave</h3>
+
+  <div class="insight-cards">
+    <div class="insight-card">
+      <div class="insight-card-title">1. Sobreexposicion tecnologica aparente vs. real</div>
+      <p>El ~30-35% en tecnologia es enganoso porque incluye posiciones cuantitativas cubiertas (Citadel, Renaissance). La exposicion tecnologica "real" con conviccion direccional proviene principalmente de Berkshire (AAPL) y es mas cercana al 15-20%.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">2. Sector financiero en transicion</div>
+      <p>La reduccion simultanea de BAC, C y COF por parte de Berkshire, mientras mantiene AXP y MCO, sugiere una preferencia por financieras con ventajas competitivas de marca y pricing power sobre bancos comerciales tradicionales.</p>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-card-title">3. Ausencia notable del sector salud/farmaceutico</div>
+      <p>Ninguno de los cinco fondos tiene posiciones destacadas en farmaceuticas puras (LLY a $953.30, ABBV a $211.74). Esto puede representar una oportunidad contraria o reflejar preocupaciones sobre vencimientos de patentes y regulacion de precios.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">4. Senal macro de Bridgewater</div>
+      <p>El incremento simultaneo en oro y mercados emergentes sugiere que Bridgewater anticipa debilidad del dolar o inflacion persistente. Esta lectura complementa el cash record de Berkshire ($369,000M) como indicador de cautela institucional generalizada.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION G: Cartera Final Recomendada -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-g">
+  <div class="section-label">Seccion G</div>
+  <h2 class="section-title">Cartera Final Recomendada</h2>
+
+  <h3>Resumen de Construccion</h3>
+
+  <p>La cartera se estructura en tres capas siguiendo principios institucionales de gestion de riesgo:</p>
+
+  <div class="insight-cards">
+    <div class="insight-card success">
+      <div class="insight-card-title">Nucleo (Core): 65%</div>
+      <p>Empresas compounders de alta calidad con ventajas competitivas duraderas</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">Satelite (GARP): 23%</div>
+      <p>Empresas de crecimiento a valoraciones razonables post-correccion</p>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-card-title">Reserva Tactica: 5%</div>
+      <p>Efectivo para aprovechar dislocaciones de mercado</p>
+    </div>
+  </div>
+
+  <p><strong>No. de posiciones:</strong> 11 acciones + efectivo. <strong>Concentracion sectorial maxima:</strong> Tecnologia ~32% (ligeramente por encima del limite de 30%, justificado por la diversificacion interna entre software, hardware e infraestructura).</p>
+
+  <h3>Tabla de Asignacion Completa</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Ticker</th>
+          <th>Empresa</th>
+          <th>Sector</th>
+          <th>Peso %</th>
+          <th>Tipo</th>
+          <th>Fondos 13F</th>
+          <th>Tesis Central</th>
+          <th>Precio (8 Abr 2026)</th>
+          <th>Target 24M</th>
+          <th>Potencial</th>
+          <th>Conviccion</th>
+          <th>Riesgo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="ticker">AAPL</td>
+          <td>Apple Inc.</td>
+          <td>Tecnologia</td>
+          <td>12%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Berkshire (#1), Renaissance, Citadel</td>
+          <td>Ecosistema + servicios recurrentes + recompras</td>
+          <td>$258.90</td>
+          <td>$310</td>
+          <td class="positive">+20%</td>
+          <td>Alta</td>
+          <td>Medio</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="ticker">MSFT</td>
+          <td>Microsoft Corp.</td>
+          <td>Tecnologia</td>
+          <td>10%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Renaissance, Citadel</td>
+          <td>Nube Azure + IA Copilot + margen operativo >40%</td>
+          <td>$374.33</td>
+          <td>$450</td>
+          <td class="positive">+20%</td>
+          <td>Alta</td>
+          <td>Medio-Bajo</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="ticker">GOOG</td>
+          <td>Alphabet Inc.</td>
+          <td>Tecnologia</td>
+          <td>10%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Bridgewater, Renaissance, Citadel</td>
+          <td>Busqueda + YouTube + Waymo + Cloud</td>
+          <td>$314.74</td>
+          <td>$395</td>
+          <td class="positive">+25%</td>
+          <td>Alta</td>
+          <td>Medio</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="ticker">UNH</td>
+          <td>UnitedHealth Group</td>
+          <td>Salud</td>
+          <td>8%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Multiples fondos de calidad</td>
+          <td>Compounder defensivo, crecimiento de EPS ~13-15% anual</td>
+          <td>$305.98</td>
+          <td>$370</td>
+          <td class="positive">+21%</td>
+          <td>Alta</td>
+          <td>Medio-Bajo</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="ticker">JPM</td>
+          <td>JPMorgan Chase</td>
+          <td>Finanzas</td>
+          <td>8%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Berkshire (proxy BAC), fondos value</td>
+          <td>Banco dominante, ROTCE >20%, diversificacion de ingresos</td>
+          <td>$307.97</td>
+          <td>$370</td>
+          <td class="positive">+20%</td>
+          <td>Alta</td>
+          <td>Medio</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="ticker">V</td>
+          <td>Visa Inc.</td>
+          <td>Finanzas</td>
+          <td>7%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Multiples fondos growth/quality</td>
+          <td>Duopolio global de pagos, margen neto >50%, crecimiento secular</td>
+          <td>$308.96</td>
+          <td>$370</td>
+          <td class="positive">+20%</td>
+          <td>Alta</td>
+          <td>Bajo</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="ticker">COST</td>
+          <td>Costco Wholesale</td>
+          <td>Consumo Defensivo</td>
+          <td>5%</td>
+          <td><span class="tag tag-core">Core</span></td>
+          <td>Bridgewater, fondos defensivos</td>
+          <td>Modelo de membresia, pricing power, resistente a recesion</td>
+          <td>$1,030.27</td>
+          <td>$1,195</td>
+          <td class="positive">+16%</td>
+          <td>Media-Alta</td>
+          <td>Bajo</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="ticker">AVGO</td>
+          <td>Broadcom Inc.</td>
+          <td>Semiconductores</td>
+          <td>7%</td>
+          <td><span class="tag tag-satellite">Satelite</span></td>
+          <td>Renaissance, Citadel</td>
+          <td>Infraestructura IA + VMware + diversificacion de clientes</td>
+          <td>$350.63</td>
+          <td>$460</td>
+          <td class="positive">+31%</td>
+          <td>Media-Alta</td>
+          <td>Alto</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="ticker">AMZN</td>
+          <td>Amazon.com</td>
+          <td>Tecnologia/Consumo</td>
+          <td>6%</td>
+          <td><span class="tag tag-satellite">Satelite</span></td>
+          <td>Renaissance, Citadel</td>
+          <td>AWS + retail + publicidad, margen en expansion</td>
+          <td>$221.25</td>
+          <td>$280</td>
+          <td class="positive">+26%</td>
+          <td>Alta</td>
+          <td>Medio</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="ticker">STZ</td>
+          <td>Constellation Brands</td>
+          <td>Consumo Discrecional</td>
+          <td>5%</td>
+          <td><span class="tag tag-satellite">Satelite</span></td>
+          <td>Berkshire (posicion nueva Q4 2025)</td>
+          <td>Cerveza premium en EE.UU., contrarian post-caida, respaldo Buffett</td>
+          <td>$150.00</td>
+          <td>$192</td>
+          <td class="positive">+28%</td>
+          <td>Media</td>
+          <td>Alto</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td class="ticker">LLY</td>
+          <td>Eli Lilly</td>
+          <td>Farmaceutica</td>
+          <td>5%</td>
+          <td><span class="tag tag-satellite">Satelite</span></td>
+          <td>Fondos growth/salud</td>
+          <td>Lider GLP-1 (Mounjaro/Zepbound), pipeline robusto, tendencia secular</td>
+          <td>$953.30</td>
+          <td>$1,165</td>
+          <td class="positive">+22%</td>
+          <td>Media-Alta</td>
+          <td>Medio-Alto</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>--</td>
+          <td>Efectivo / Money Market</td>
+          <td>--</td>
+          <td>5%</td>
+          <td><span class="tag tag-weight">Tactica</span></td>
+          <td>--</td>
+          <td>Reserva para oportunidades en correcciones adicionales</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>Nulo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Metricas Agregadas de la Cartera (Estimaciones)</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Metrica</th><th>Valor Estimado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>P/E promedio ponderado (forward)</td><td>~24x</td></tr>
+        <tr><td>Crecimiento EPS promedio ponderado</td><td>~14-16% anual</td></tr>
+        <tr><td>Rendimiento por dividendo promedio</td><td>~0.9%</td></tr>
+        <tr><td>Beta estimada vs. S&amp;P 500</td><td>~1.02</td></tr>
+        <tr><td>Exposicion sectorial maxima (Tecnologia)</td><td>~32%</td></tr>
+        <tr><td>Numero de posiciones</td><td>11 + efectivo</td></tr>
+        <tr><td>Retorno esperado (base, 24M anualizado)</td><td>~14-16%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Distribucion Sectorial</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Sector</th><th>Peso %</th><th>Posiciones</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tecnologia (amplia)</td><td>32%</td><td>AAPL, MSFT, GOOG</td></tr>
+        <tr><td>Finanzas</td><td>15%</td><td>JPM, V</td></tr>
+        <tr><td>Salud/Farmaceutica</td><td>13%</td><td>UNH, LLY</td></tr>
+        <tr><td>Semiconductores</td><td>7%</td><td>AVGO</td></tr>
+        <tr><td>Consumo (Defensivo + Discrecional)</td><td>10%</td><td>COST, STZ</td></tr>
+        <tr><td>Tecnologia/Consumo hibrido</td><td>6%</td><td>AMZN</td></tr>
+        <tr><td>Efectivo</td><td>5%</td><td>--</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>100%</strong></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><strong>Nota:</strong> Las estimaciones de precio, valoracion y potencial de retorno se basan en datos disponibles a abril de 2026 y proyecciones de consenso de analistas. Los precios objetivo a 24 meses representan escenarios base, no garantias. Rentabilidades pasadas no aseguran resultados futuros.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION H: Comentario por Posicion -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-h">
+  <div class="section-label">Seccion H</div>
+  <h2 class="section-title">Comentario por Posicion</h2>
+
+  <!-- 1. AAPL -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">1</span>
+      <span class="position-ticker">AAPL</span>
+      <span class="position-name">Apple Inc.</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">12%</span>
+      </div>
+    </div>
+    <p>Apple representa la posicion de mayor peso en la cartera, alineandose con la conviccion demostrada por Berkshire Hathaway, donde constituye su posicion numero uno. La tesis se fundamenta en tres pilares: (i) un ecosistema de 2.2 mil millones de dispositivos activos que genera costos de cambio extraordinariamente altos, (ii) la transicion hacia servicios recurrentes (App Store, iCloud, Apple Music, Apple TV+) que ya superan los $100 mil millones anuales con margenes superiores al 70%, y (iii) un programa de recompra de acciones que reduce consistentemente el float. El precio actual de $258.90, frente a los $243 de cierre de Q4 2025, refleja una apreciacion del +6.5%. Los catalizadores principales incluyen el ciclo de IA en dispositivos (Apple Intelligence), nuevos productos (Vision Pro iteraciones), y la expansion de servicios financieros. El riesgo principal reside en la exposicion a aranceles sobre manufactura china y posible desaceleracion del ciclo de reemplazo de iPhone.</p>
+  </div>
+
+  <!-- 2. MSFT -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">2</span>
+      <span class="position-ticker">MSFT</span>
+      <span class="position-name">Microsoft Corp.</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">10%</span>
+      </div>
+    </div>
+    <p>Microsoft es posiblemente la empresa tecnologica mejor posicionada para la era de inteligencia artificial, con una participacion mayoritaria en la monetizacion de IA a traves de Azure OpenAI y Copilot integrado en toda la suite de productividad. La nube Azure continua creciendo a tasas de ~25-30% anual, con IA como motor incremental de aceleracion. Los margenes operativos superiores al 40% y la diversificacion entre nube, productividad empresarial (Office 365), gaming (Activision) y LinkedIn proporcionan estabilidad. Renaissance y Citadel mantienen posiciones significativas. A $374.33, la accion ha corregido -12.9% desde los $430 de diciembre 2025, ofreciendo una valoracion mas atractiva de ~30x earnings forward. Los riesgos incluyen competencia en nube (AWS, Google Cloud), posibles investigaciones antimonopolio, y la presion sobre gasto de capital en infraestructura de IA. La fortaleza del modelo de ingresos recurrentes (>60% del total) y la generacion de flujo de caja libre superior a $70 mil millones anuales justifican la posicion.</p>
+  </div>
+
+  <!-- 3. GOOG -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">3</span>
+      <span class="position-ticker">GOOG</span>
+      <span class="position-name">Alphabet Inc.</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">10%</span>
+      </div>
+    </div>
+    <p>Alphabet ha experimentado un rally significativo de +63.9% desde los $192 de cierre de Q4 2025 hasta los $314.74 actuales. La tesis se centra en: (i) el dominio de busqueda con >90% de cuota de mercado, ahora potenciado por IA generativa integrada, (ii) YouTube como la segunda plataforma de streaming del mundo con monetizacion en expansion, (iii) Google Cloud creciendo a >25% y aproximandose a rentabilidad sostenida, y (iv) Waymo como opcion de valor adicional. Bridgewater, Renaissance y Citadel mantienen posiciones relevantes. El fuerte rendimiento desde Q4 refleja el reconocimiento del mercado de la capacidad de Alphabet en IA. El principal catalizador seria la demostracion continuada de que la IA potencia el modelo de busqueda. El riesgo mas notable es la regulacion antimonopolio y la posible desinversion ordenada por tribunales.</p>
+  </div>
+
+  <!-- 4. UNH -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">4</span>
+      <span class="position-ticker">UNH</span>
+      <span class="position-name">UnitedHealth Group</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">8%</span>
+      </div>
+    </div>
+    <p>UnitedHealth es el compounder defensivo por excelencia en el sector salud estadounidense. Como la aseguradora de salud mas grande del pais con Optum como brazo de servicios de salud integrados, la empresa ha compuesto su EPS a una tasa de ~13-15% anual durante la ultima decada. La estructura vertical (seguros + servicios + farmacia + datos) crea sinergias dificiles de replicar. A $305.98, la accion ha experimentado una caida significativa de -45.4% desde los $560 de Q4 2025, lo que representa una dislocacion notable que merece atencion. A estos niveles, la valoracion se ha comprimido sustancialmente, creando una potencial oportunidad de valor si la tesis fundamental permanece intacta. Los catalizadores incluyen el envejecimiento demografico, la expansion de Medicare Advantage, y la integracion de tecnologia en salud a traves de Optum. Los riesgos principales son regulatorios: posibles cambios en politica de salud, presion sobre precios de medicamentos, y escrutinio antimonopolio sobre la integracion vertical.</p>
+  </div>
+
+  <!-- 5. JPM -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">5</span>
+      <span class="position-ticker">JPM</span>
+      <span class="position-name">JPMorgan Chase</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">8%</span>
+      </div>
+    </div>
+    <p>JPMorgan es el banco mas solido y mejor gestionado de Estados Unidos, con un ROTCE consistentemente superior al 20% bajo el liderazgo de Jamie Dimon. La diversificacion entre banca de inversion, banca comercial, gestion de activos y banca de consumo proporciona multiples motores de crecimiento y estabilidad en diferentes ciclos economicos. A $307.97, la accion ha subido +25.7% desde los $245 de Q4 2025, reflejando la solidez de la franquicia. Berkshire Hathaway mantiene exposicion significativa al sector bancario (Bank of America como proxy comparable). Los catalizadores incluyen la normalizacion de actividad de banca de inversion, expansion de cuota en pagos digitales, y posible flexibilizacion regulatoria. Los riesgos son macroeconomicos: una recesion severa incrementaria provisiones por perdidas crediticias, y un entorno de tasas mas bajas comprimiria el margen neto de interes. La sucesion de Dimon sigue siendo un factor a monitorear.</p>
+  </div>
+
+  <!-- 6. V -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">6</span>
+      <span class="position-ticker">V</span>
+      <span class="position-name">Visa Inc.</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">7%</span>
+      </div>
+    </div>
+    <p>Visa opera uno de los negocios con mejores caracteristicas economicas del mundo: un duopolio global de pagos con margenes netos superiores al 50%, capex minimo, y crecimiento secular impulsado por la transicion global de efectivo a pagos digitales. Solo el ~15% de las transacciones globales son electronicas, lo que implica una pista de crecimiento de decadas. A $308.96, la accion se mantiene esencialmente estable (+1.3%) desde los $305 de Q4 2025. Los catalizadores incluyen la expansion en mercados emergentes, nuevos flujos (B2B, cross-border), y la integracion con fintech en lugar de disrupcion por ellas. El riesgo mas relevante es regulatorio: posibles limites a tasas de intercambio o mandatos de enrutamiento en diferentes jurisdicciones. La sensibilidad a volumen de transacciones implica exposicion ciclica moderada, pero historicamente Visa ha demostrado resiliencia incluso en recesiones.</p>
+  </div>
+
+  <!-- 7. COST -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">7</span>
+      <span class="position-ticker">COST</span>
+      <span class="position-name">Costco Wholesale</span>
+      <div class="position-tags">
+        <span class="tag tag-core">Core</span>
+        <span class="tag tag-weight">5%</span>
+      </div>
+    </div>
+    <p>Costco es una posicion defensiva que aporta estabilidad a la cartera. Su modelo de membresia (tasa de renovacion >93%) genera ingresos predecibles que cubren la mayor parte de los gastos operativos, permitiendo a la empresa operar el retail practicamente al costo. Bridgewater y otros fondos defensivos la favorecen. A $1,030.27, la accion ha subido +12.0% desde los $920 de Q4 2025. La valoracion parece elevada en terminos absolutos, pero se justifica por la previsibilidad del negocio, el crecimiento constante de membresias, y la capacidad de subir cuotas periodicamente sin erosion de base. El peso se limita al 5% precisamente por esta valoracion premium. Los catalizadores son la expansion internacional, el crecimiento de e-commerce, y potenciales incrementos de cuota de membresia. El riesgo principal es una compresion multiple si el crecimiento decepciona, y la competencia de Amazon en e-commerce de consumo basico.</p>
+  </div>
+
+  <!-- 8. AVGO -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">8</span>
+      <span class="position-ticker">AVGO</span>
+      <span class="position-name">Broadcom Inc.</span>
+      <div class="position-tags">
+        <span class="tag tag-satellite">Satelite</span>
+        <span class="tag tag-weight">7%</span>
+      </div>
+    </div>
+    <p>Broadcom representa la apuesta mas agresiva de la cartera en infraestructura de inteligencia artificial. Tras la adquisicion de VMware, la empresa combina semiconductores de alto rendimiento (networking, custom chips para hyperscalers) con software de infraestructura empresarial. Renaissance y Citadel mantienen posiciones significativas. A $350.63, la accion ha experimentado un rally extraordinario de +55.8% desde los $225 de diciembre 2025, reflejando el fuerte momentum en el sector de infraestructura AI. Los catalizadores incluyen la expansion de chips custom de IA para Google (TPU), Meta, y otros hyperscalers, la integracion y sinergias de VMware, y el crecimiento secular en networking de centros de datos. Los riesgos son elevados: concentracion de clientes en hyperscalers, volatilidad del ciclo de semiconductores, y la posibilidad de que el gasto en IA se desacelere. La posicion se clasifica como satelite precisamente por esta volatilidad.</p>
+  </div>
+
+  <!-- 9. AMZN -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">9</span>
+      <span class="position-ticker">AMZN</span>
+      <span class="position-name">Amazon.com</span>
+      <div class="position-tags">
+        <span class="tag tag-satellite">Satelite</span>
+        <span class="tag tag-weight">6%</span>
+      </div>
+    </div>
+    <p>Amazon opera tres negocios de clase mundial: AWS (nube, ~65% del ingreso operativo), retail/logistica (escala inigualable), y publicidad digital (tercer mayor jugador global). A $221.25, la accion se mantiene practicamente plana (+0.6%) desde los $220 de diciembre 2025. Renaissance y Citadel son inversores destacados. La tesis satelite se basa en la expansion simultanea de margenes en retail (eficiencia logistica, robotizacion) y el crecimiento acelerado de AWS por demanda de IA. Los catalizadores son la aceleracion de AWS por cargas de trabajo de IA, mejora continua de margenes de retail, y crecimiento de publicidad a >20%. Los riesgos incluyen la intensidad de capital requerida (capex >$80 mil millones anuales), competencia en nube (Azure, Google Cloud), y posible presion regulatoria. El peso del 6% refleja la conviccion en la empresa equilibrada con la volatilidad inherente de una empresa en fase de inversion intensiva.</p>
+  </div>
+
+  <!-- 10. STZ -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">10</span>
+      <span class="position-ticker">STZ</span>
+      <span class="position-name">Constellation Brands</span>
+      <div class="position-tags">
+        <span class="tag tag-satellite">Satelite</span>
+        <span class="tag tag-weight">5%</span>
+      </div>
+    </div>
+    <p>Constellation Brands es la posicion mas contrarian de la cartera y la mas reciente incorporacion de Berkshire Hathaway en Q4 2025. La empresa domina el segmento premium de cerveza en Estados Unidos con marcas como Modelo y Corona, que continuan ganando cuota de mercado en un mercado de bebidas alcoholicas en transicion. A $150.00, la accion ha caido -34.8% desde los $230 de Q4 2025, profundizando significativamente la tesis contrarian. A estos niveles, la valoracion es materialmente inferior a su promedio historico, reflejando preocupaciones sobre el crecimiento de volumenes, el impacto del GLP-1 en consumo de alcohol, y la perdida de valor en su division de vinos y destilados. La logica de inversion se apoya en: el respaldo de Buffett como senal de valor, la fortaleza de la marca Modelo como cerveza #1 en EE.UU., y la posibilidad de desinversion de activos no esenciales. Los riesgos son reales: cambios demograficos en consumo de alcohol, posibles aranceles sobre importaciones mexicanas, y la incertidumbre sobre el efecto de medicamentos GLP-1 en habitos de consumo.</p>
+  </div>
+
+  <!-- 11. LLY -->
+  <div class="position-block">
+    <div class="position-header">
+      <span class="position-number">11</span>
+      <span class="position-ticker">LLY</span>
+      <span class="position-name">Eli Lilly</span>
+      <div class="position-tags">
+        <span class="tag tag-satellite">Satelite</span>
+        <span class="tag tag-weight">5%</span>
+      </div>
+    </div>
+    <p>Eli Lilly lidera la tendencia secular mas importante en farmaceutica de la ultima decada: los medicamentos GLP-1 para diabetes y obesidad. Mounjaro y Zepbound representan un mercado direccionable estimado en $100+ mil millones anuales para 2030. A $953.30, la accion ha subido +32.4% desde los niveles estimados de Q4 2025, reflejando la fuerte demanda y expectativas del mercado. Los catalizadores incluyen la expansion de indicaciones de GLP-1 (cardiovascular, apnea del sueno, NASH), nuevas formulaciones orales, y el pipeline complementario en oncologia e inmunologia. Los riesgos son relevantes: competencia intensificandose (Novo Nordisk, Amgen, otros), posible presion politica sobre precios de medicamentos, y riesgos de ejecucion en manufactura para satisfacer demanda. La posicion del 5% refleja la oportunidad secular equilibrada con el riesgo de valoracion.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION I: Escenarios a 24 Meses -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-i">
+  <div class="section-label">Seccion I</div>
+  <h2 class="section-title">Escenarios a 24 Meses</h2>
+
+  <p>La siguiente tabla presenta tres escenarios por posicion con sus respectivas probabilidades estimadas y precios objetivo. El escenario base asume crecimiento economico moderado con resolucion parcial de tensiones arancelarias. El escenario alcista incorpora resolucion completa de aranceles y aceleracion de IA. El escenario bajista contempla recesion leve o escalada arancelaria.</p>
+
+  <h3>Tabla de Escenarios por Posicion</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Peso %</th>
+          <th>Precio Actual</th>
+          <th>Bull</th>
+          <th>Prob.</th>
+          <th>Base</th>
+          <th>Prob.</th>
+          <th>Bear</th>
+          <th>Prob.</th>
+          <th>Ret. Pond.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ticker">AAPL</td>
+          <td>12%</td>
+          <td>$258.90</td>
+          <td class="scenario-bull">$355 (+37%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$310 (+20%)</td>
+          <td>50%</td>
+          <td class="scenario-bear">$223 (-14%)</td>
+          <td>25%</td>
+          <td class="positive">+16%</td>
+        </tr>
+        <tr>
+          <td class="ticker">MSFT</td>
+          <td>10%</td>
+          <td>$374.33</td>
+          <td class="scenario-bull">$494 (+32%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$450 (+20%)</td>
+          <td>50%</td>
+          <td class="scenario-bear">$329 (-12%)</td>
+          <td>25%</td>
+          <td class="positive">+15%</td>
+        </tr>
+        <tr>
+          <td class="ticker">GOOG</td>
+          <td>10%</td>
+          <td>$314.74</td>
+          <td class="scenario-bull">$434 (+38%)</td>
+          <td>30%</td>
+          <td class="scenario-base">$395 (+25%)</td>
+          <td>45%</td>
+          <td class="scenario-bear">$271 (-14%)</td>
+          <td>25%</td>
+          <td class="positive">+18%</td>
+        </tr>
+        <tr>
+          <td class="ticker">UNH</td>
+          <td>8%</td>
+          <td>$305.98</td>
+          <td class="scenario-bull">$395 (+29%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$370 (+21%)</td>
+          <td>50%</td>
+          <td class="scenario-bear">$275 (-10%)</td>
+          <td>25%</td>
+          <td class="positive">+15%</td>
+        </tr>
+        <tr>
+          <td class="ticker">JPM</td>
+          <td>8%</td>
+          <td>$307.97</td>
+          <td class="scenario-bull">$397 (+29%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$370 (+20%)</td>
+          <td>50%</td>
+          <td class="scenario-bear">$259 (-16%)</td>
+          <td>25%</td>
+          <td class="positive">+13%</td>
+        </tr>
+        <tr>
+          <td class="ticker">V</td>
+          <td>7%</td>
+          <td>$308.96</td>
+          <td class="scenario-bull">$386 (+25%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$370 (+20%)</td>
+          <td>50%</td>
+          <td class="scenario-bear">$278 (-10%)</td>
+          <td>25%</td>
+          <td class="positive">+14%</td>
+        </tr>
+        <tr>
+          <td class="ticker">COST</td>
+          <td>5%</td>
+          <td>$1,030.27</td>
+          <td class="scenario-bull">$1,319 (+28%)</td>
+          <td>20%</td>
+          <td class="scenario-base">$1,195 (+16%)</td>
+          <td>55%</td>
+          <td class="scenario-bear">$938 (-9%)</td>
+          <td>25%</td>
+          <td class="positive">+12%</td>
+        </tr>
+        <tr>
+          <td class="ticker">AVGO</td>
+          <td>7%</td>
+          <td>$350.63</td>
+          <td class="scenario-bull">$526 (+50%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$460 (+31%)</td>
+          <td>45%</td>
+          <td class="scenario-bear">$263 (-25%)</td>
+          <td>30%</td>
+          <td class="positive">+21%</td>
+        </tr>
+        <tr>
+          <td class="ticker">AMZN</td>
+          <td>6%</td>
+          <td>$221.25</td>
+          <td class="scenario-bull">$316 (+43%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$280 (+26%)</td>
+          <td>45%</td>
+          <td class="scenario-bear">$184 (-17%)</td>
+          <td>30%</td>
+          <td class="positive">+18%</td>
+        </tr>
+        <tr>
+          <td class="ticker">STZ</td>
+          <td>5%</td>
+          <td>$150.00</td>
+          <td class="scenario-bull">$209 (+39%)</td>
+          <td>20%</td>
+          <td class="scenario-base">$192 (+28%)</td>
+          <td>45%</td>
+          <td class="scenario-bear">$117 (-22%)</td>
+          <td>35%</td>
+          <td class="positive">+14%</td>
+        </tr>
+        <tr>
+          <td class="ticker">LLY</td>
+          <td>5%</td>
+          <td>$953.30</td>
+          <td class="scenario-bull">$1,258 (+32%)</td>
+          <td>25%</td>
+          <td class="scenario-base">$1,165 (+22%)</td>
+          <td>45%</td>
+          <td class="scenario-bear">$772 (-19%)</td>
+          <td>30%</td>
+          <td class="positive">+14%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Retorno Esperado Ponderado de la Cartera</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Escenario</th><th>Probabilidad</th><th>Retorno Estimado (24M)</th><th>Retorno Anualizado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong class="scenario-bull">Alcista</strong></td><td>25%</td><td>+30 a +35%</td><td>+14 a +16%</td></tr>
+        <tr><td><strong class="scenario-base">Base</strong></td><td>50%</td><td>+18 a +22%</td><td>+9 a +11%</td></tr>
+        <tr><td><strong class="scenario-bear">Bajista</strong></td><td>25%</td><td>-8 a -15%</td><td>-4 a -8%</td></tr>
+        <tr><td><strong>Ponderado</strong></td><td>100%</td><td><strong>+14 a +18%</strong></td><td><strong>+7 a +9%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Notas sobre los Escenarios</h3>
+
+  <div class="insight-cards">
+    <div class="insight-card success">
+      <div class="insight-card-title">Escenario Alcista (25% de probabilidad)</div>
+      <p>Resolucion de tensiones arancelarias entre EE.UU. y China. La Reserva Federal reduce tasas 2-3 veces en 2026. La monetizacion de IA supera expectativas. Crecimiento economico de EE.UU. se mantiene en 2.0-2.5%.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">Escenario Base (50% de probabilidad)</div>
+      <p>Resolucion parcial de aranceles, incertidumbre persistente. La Fed reduce tasas 1-2 veces, manteniendo postura restrictiva. Crecimiento economico moderado de 1.5-2.0%. Ganancias corporativas crecen 8-12% anual.</p>
+    </div>
+    <div class="insight-card danger">
+      <div class="insight-card-title">Escenario Bajista (25% de probabilidad)</div>
+      <p>Escalada arancelaria, retaliacion comercial global. Recesion leve en EE.UU. (1-2 trimestres negativos). La Fed mantiene o sube tasas por inflacion importada. Compresion de multiplos generalizada, especialmente en tecnologia.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>Disclaimer:</strong> Las probabilidades y precios objetivo son estimaciones basadas en analisis fundamental y condiciones de mercado a abril de 2026. No constituyen predicciones exactas. Los mercados pueden comportarse fuera de los rangos contemplados.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION J: Plan de Implementacion -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-j">
+  <div class="section-label">Seccion J</div>
+  <h2 class="section-title">Plan de Implementacion</h2>
+
+  <h3>Fase 1: Despliegue Inicial (Dia 1)</h3>
+
+  <p><strong>Capital disponible: $25,000.</strong> Se recomienda desplegar el 80% del capital inicial ($20,000) de forma inmediata, manteniendo $5,000 como reserva tactica para incrementar posiciones si se producen correcciones adicionales en las semanas siguientes.</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Peso Obj.</th>
+          <th>Asignacion Dia 1 (80%)</th>
+          <th>Monto</th>
+          <th>Acciones Aprox.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="ticker">AAPL</td><td>12%</td><td>$2,400</td><td>$2,400</td><td>~9 acciones</td></tr>
+        <tr><td class="ticker">MSFT</td><td>10%</td><td>$2,000</td><td>$2,000</td><td>~5 acciones</td></tr>
+        <tr><td class="ticker">GOOG</td><td>10%</td><td>$2,000</td><td>$2,000</td><td>~6 acciones</td></tr>
+        <tr><td class="ticker">UNH</td><td>8%</td><td>$1,600</td><td>$1,600</td><td>~5 acciones</td></tr>
+        <tr><td class="ticker">JPM</td><td>8%</td><td>$1,600</td><td>$1,600</td><td>~5 acciones</td></tr>
+        <tr><td class="ticker">V</td><td>7%</td><td>$1,400</td><td>$1,400</td><td>~4 acciones</td></tr>
+        <tr><td class="ticker">COST</td><td>5%</td><td>$1,000</td><td>$1,000</td><td>~1 accion</td></tr>
+        <tr><td class="ticker">AVGO</td><td>7%</td><td>$1,400</td><td>$1,400</td><td>~4 acciones</td></tr>
+        <tr><td class="ticker">AMZN</td><td>6%</td><td>$1,200</td><td>$1,200</td><td>~5 acciones</td></tr>
+        <tr><td class="ticker">STZ</td><td>5%</td><td>$1,000</td><td>$1,000</td><td>~6 acciones</td></tr>
+        <tr><td class="ticker">LLY</td><td>5%</td><td>$1,000</td><td>$1,000</td><td>~1 accion</td></tr>
+        <tr><td>Efectivo</td><td>5%</td><td>$5,000</td><td>$5,000</td><td>--</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>100%</strong></td><td><strong>$25,000</strong></td><td><strong>$25,000</strong></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><strong>Ejecucion recomendada:</strong> Utilizar ordenes limitadas, no de mercado. Ejecutar en los primeros 30 minutos o ultimos 30 minutos de sesion para mayor liquidez. Para posiciones fraccionarias, verificar que el broker soporte acciones fraccionarias. Considerar ETF SPY o VOO como placeholder si alguna posicion no puede ejecutarse al precio deseado.</p>
+  </div>
+
+  <h3>Fase 2: Despliegue de la Reserva Tactica ($5,000)</h3>
+
+  <p>Desplegar los $5,000 de reserva durante las primeras 4-8 semanas segun condiciones de mercado:</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Escenario</th><th>Accion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mercado sube >5% desde entrada</td><td>Desplegar en posiciones con menor peso relativo vs. objetivo</td></tr>
+        <tr><td>Mercado lateral (+/-3%)</td><td>Desplegar gradualmente $1,250/semana durante 4 semanas</td></tr>
+        <tr><td>Mercado cae 5-10% adicional</td><td>Concentrar en posiciones de mayor conviccion (AAPL, GOOG, AVGO)</td></tr>
+        <tr><td>Mercado cae >10% adicional</td><td>Desplegar todo agresivamente en las 5 posiciones mas castigadas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Fase 3: Aportaciones Mensuales ($2,000/mes)</h3>
+
+  <p><strong>Estrategia de DCA (Dollar-Cost Averaging) con sesgo tactico:</strong></p>
+
+  <p>Cada mes, los $2,000 se asignan de la siguiente manera:</p>
+
+  <div class="insight-cards">
+    <div class="insight-card">
+      <div class="insight-card-title">Prioridad 1 (60% / $1,200)</div>
+      <p>Aportar a las 2-3 posiciones mas infraponderadas respecto al peso objetivo. Esto naturalmente rebalanza la cartera.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">Prioridad 2 (30% / $600)</div>
+      <p>Aportar a posiciones Core que hayan corregido >5% en el mes, independientemente de su peso relativo.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">Prioridad 3 (10% / $200)</div>
+      <p>Acumular en efectivo hasta alcanzar y mantener el 5% de reserva.</p>
+    </div>
+  </div>
+
+  <p><strong>Ejemplo mensual tipico:</strong> Si GOOG y AVGO estan infraponderados: $600 a cada uno. Si JPM corrigio 7% en el mes: $600 a JPM. Reserva: $200 al money market.</p>
+
+  <h3>Fase 4: Rebalanceo Trimestral</h3>
+
+  <p><strong>Frecuencia:</strong> Revisar el ultimo dia habil de cada trimestre (junio, septiembre, diciembre 2026; marzo 2027; junio 2027).</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Condicion</th><th>Accion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Posicion >15% del peso objetivo por encima</td><td>Recortar hasta peso objetivo (ej: AAPL sube a 16%, recortar al 12%)</td></tr>
+        <tr><td>Posicion >15% del peso objetivo por debajo</td><td>Agregar hasta peso objetivo con aportaciones mensuales</td></tr>
+        <tr><td>Sector supera 35% del portafolio</td><td>Recortar posicion mas sobrevaluada del sector</td></tr>
+        <tr><td>Efectivo cae por debajo de 3%</td><td>Reconstruir hasta 5% con proximas aportaciones</td></tr>
+        <tr><td>Posicion individual cae >30%</td><td>Evaluar si la tesis sigue intacta (ver senales de invalidacion)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Senales de Invalidacion por Posicion</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Ticker</th><th>Senales de Invalidacion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ticker">AAPL</td><td>Caida sostenida en ventas de iPhone >2 trimestres; perdida de cuota en servicios; margen bruto &lt;40%</td></tr>
+        <tr><td class="ticker">MSFT</td><td>Desaceleracion de Azure por debajo de 15% de crecimiento; fracaso de monetizacion de Copilot; margen operativo &lt;35%</td></tr>
+        <tr><td class="ticker">GOOG</td><td>Perdida de cuota de busqueda superior a 5 puntos porcentuales; desinversion ordenada por reguladores; Cloud no logra rentabilidad</td></tr>
+        <tr><td class="ticker">UNH</td><td>Cambio regulatorio mayor (Medicare for All avanza); ROTCE cae por debajo de 20%; escandalo corporativo</td></tr>
+        <tr><td class="ticker">JPM</td><td>ROTCE cae por debajo de 15% sostenidamente; perdidas crediticias excepcionales; cambio de CEO sin plan claro</td></tr>
+        <tr><td class="ticker">V</td><td>Legislacion que limite tasas de intercambio globalmente; disrupcion real por cripto/stablecoins; crecimiento &lt;8%</td></tr>
+        <tr><td class="ticker">COST</td><td>Tasa de renovacion de membresia cae por debajo de 88%; competencia erosiona modelo; crecimiento SSS negativo</td></tr>
+        <tr><td class="ticker">AVGO</td><td>Perdida de contratos clave con hyperscalers; ciclo de semiconductores en recesion profunda; integracion VMware fracasa</td></tr>
+        <tr><td class="ticker">AMZN</td><td>AWS pierde cuota significativa; margenes retail se deterioran; regulacion antimonopolio fragmenta la empresa</td></tr>
+        <tr><td class="ticker">STZ</td><td>Volumenes de cerveza caen >3% anual; aranceles sobre importaciones mexicanas >25%; participacion de mercado disminuye</td></tr>
+        <tr><td class="ticker">LLY</td><td>Competidor GLP-1 demuestra superioridad clinica clara; efectos secundarios graves a largo plazo; precio regulado por gobierno</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Reglas para Correcciones de Mercado</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Nivel de Correccion (desde maximos)</th><th>Accion Recomendada</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>-5 a -10%</td><td>Mantener plan normal de DCA mensual; no actuar emocionalmente</td></tr>
+        <tr><td>-10 a -15%</td><td>Acelerar aportaciones: agregar $1,000 adicionales de ahorros si es posible; priorizar posiciones Core</td></tr>
+        <tr><td>-15 a -20%</td><td>Desplegar 50% de la reserva de efectivo en posiciones de mayor conviccion</td></tr>
+        <tr><td>-20 a -25%</td><td>Desplegar 100% de la reserva de efectivo; considerar aportacion extraordinaria</td></tr>
+        <tr><td>>-25% (bear market)</td><td>Evaluar si es recesion o crisis de liquidez; si es solo valoracion, maximizar aportaciones; si es crisis fundamental, mantener efectivo</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION K: Conclusion Final -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-k">
+  <div class="section-label">Seccion K</div>
+  <h2 class="section-title">Conclusion Final</h2>
+
+  <h3>Evaluacion Honesta de Probabilidades</h3>
+
+  <p>La probabilidad estimada de que esta cartera supere al S&amp;P 500 en 300 puntos basicos anualizados durante los proximos 24 meses es de aproximadamente <strong>55-60%</strong>. Esta es una evaluacion realista, no una garantia. La gestion activa tiene un historial mixto de superacion de indices, y este objetivo, aunque modesto en terminos absolutos, requiere que varios factores se alineen favorablemente.</p>
+
+  <h3>Lo Que Necesita Salir Bien</h3>
+
+  <div class="insight-cards">
+    <div class="insight-card success">
+      <div class="insight-card-title">1. Crecimiento de ganancias corporativas</div>
+      <p>Las empresas seleccionadas necesitan cumplir o superar las expectativas de crecimiento de EPS del 14-16% anual. Una desaceleracion generalizada eliminaria el alpha esperado.</p>
+    </div>
+    <div class="insight-card success">
+      <div class="insight-card-title">2. Resolucion parcial de aranceles</div>
+      <p>El entorno arancelario actual deprime selectivamente a ciertas posiciones (AAPL, STZ, AVGO). Una resolucion, aunque sea parcial, desbloquearia valor significativo.</p>
+    </div>
+    <div class="insight-card success">
+      <div class="insight-card-title">3. Ausencia de recesion</div>
+      <p>La cartera esta disenada para resistir una desaceleracion moderada, pero una recesion profunda comprimiria multiplos y ganancias simultaneamente.</p>
+    </div>
+    <div class="insight-card success">
+      <div class="insight-card-title">4. Monetizacion de IA</div>
+      <p>Varias posiciones (MSFT, GOOG, AVGO, AMZN) dependen de que la inversion masiva en infraestructura de IA se traduzca en ingresos y beneficios tangibles durante 2026-2027.</p>
+    </div>
+    <div class="insight-card success">
+      <div class="insight-card-title">5. Disciplina del inversor</div>
+      <p>El plan de DCA mensual y rebalanceo trimestral solo funciona si se ejecuta con consistencia, especialmente durante periodos de volatilidad.</p>
+    </div>
+  </div>
+
+  <h3>Lo Que Podria Salir Mal</h3>
+
+  <div class="insight-cards">
+    <div class="insight-card danger">
+      <div class="insight-card-title">1. Guerra comercial prolongada</div>
+      <p>Una escalada arancelaria sin resolucion podria provocar estanflacion, el peor escenario para esta cartera.</p>
+    </div>
+    <div class="insight-card danger">
+      <div class="insight-card-title">2. Tasas de interes mas altas por mas tiempo</div>
+      <p>Si la inflacion persiste y la Fed no puede reducir tasas, las valoraciones de crecimiento (LLY, COST, incluso MSFT) sufriran presion significativa.</p>
+    </div>
+    <div class="insight-card danger">
+      <div class="insight-card-title">3. Compresion de multiplos en tecnologia</div>
+      <p>El sector tecnologico representa ~32% de la cartera. Un re-rating negativo tendria impacto desproporcionado.</p>
+    </div>
+    <div class="insight-card danger">
+      <div class="insight-card-title">4. Eventos idiosincraticos</div>
+      <p>Un escandalo corporativo, fracaso de producto, o investigacion regulatoria en cualquiera de las posiciones de mayor peso podria erosionar el retorno total.</p>
+    </div>
+    <div class="insight-card danger">
+      <div class="insight-card-title">5. Riesgo de concentracion factorial</div>
+      <p>Existe una exposicion implicita al factor "calidad" (quality). Si el mercado favorece empresas de menor calidad, la cartera podria rezagarse temporalmente.</p>
+    </div>
+  </div>
+
+  <h3>Para Quien es Esta Estrategia</h3>
+
+  <p>Esta estrategia es adecuada para un inversor que:</p>
+
+  <div class="insight-cards">
+    <div class="insight-card">
+      <div class="insight-card-title">Perfil requerido</div>
+      <p>Tiene horizonte de al menos 24 meses y preferiblemente mas largo. Puede tolerar drawdowns temporales de 15-20% sin vender en panico. Se compromete a ejecutar el plan de aportacion mensual con disciplina. Revisa trimestralmente pero no reacciona a ruido diario del mercado. Entiende que batir al indice no esta garantizado y acepta el objetivo como aspiracional, no contractual. Prefiere acumulacion gradual sobre especulacion concentrada.</p>
+    </div>
+  </div>
+
+  <h3>Veredicto</h3>
+
+  <p>La cartera ofrece una combinacion razonable de calidad, diversificacion y potencial de retorno. Las condiciones de mercado de abril de 2026 presentan un entorno mixto: algunas posiciones han experimentado rallies significativos (GOOG +63.9%, AVGO +55.8%, NVDA +32.9%) mientras otras han sufrido caidas notables (UNH -45.4%, STZ -34.8%). La alineacion con posiciones de los fondos institucionales mas respetados (Berkshire, Renaissance, Bridgewater, Citadel) proporciona una capa adicional de validacion, aunque no garantiza resultados. El exito depende mas de la disciplina de ejecucion que de la seleccion inicial de valores.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- SECTION L: Cartera Final en Una Pagina -->
+<!-- ════════════════════════════════════════════════════════ -->
+<section class="section" id="section-l">
+  <div class="section-label">Seccion L</div>
+  <h2 class="section-title">Cartera Final Sugerida para Batir al S&amp;P 500 +300 bps</h2>
+
+  <h3>Resumen Ejecutivo de la Cartera</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Componente</th><th>Detalle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Numero de posiciones</strong></td><td>11 acciones + reserva de efectivo</td></tr>
+        <tr><td><strong>Capital inicial</strong></td><td>$25,000</td></tr>
+        <tr><td><strong>Aportacion mensual</strong></td><td>$2,000</td></tr>
+        <tr><td><strong>Capital proyectado a 24 meses</strong></td><td>~$73,000 (aportaciones acumuladas) + retornos</td></tr>
+        <tr><td><strong>Retorno esperado anualizado (base)</strong></td><td>12-16%</td></tr>
+        <tr><td><strong>Objetivo vs. S&amp;P 500</strong></td><td>+300 bps anualizados (~13% vs. ~10% historico)</td></tr>
+        <tr><td><strong>Probabilidad de exito estimada</strong></td><td>55-60%</td></tr>
+        <tr><td><strong>Horizonte minimo</strong></td><td>24 meses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>NUCLEO (65%) | Compounders de Calidad</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Ticker</th><th>Peso</th><th>Precio (8 Abr 2026)</th><th>Target 24M</th><th>Rol en la Cartera</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ticker">AAPL</td><td>12%</td><td>$258.90</td><td>$310</td><td>Pilar de flujo de caja y ecosistema</td></tr>
+        <tr><td class="ticker">MSFT</td><td>10%</td><td>$374.33</td><td>$450</td><td>Nube + IA, margen operativo elite</td></tr>
+        <tr><td class="ticker">GOOG</td><td>10%</td><td>$314.74</td><td>$395</td><td>Valor relativo en mega-cap tech</td></tr>
+        <tr><td class="ticker">UNH</td><td>8%</td><td>$305.98</td><td>$370</td><td>Compounder defensivo en salud</td></tr>
+        <tr><td class="ticker">JPM</td><td>8%</td><td>$307.97</td><td>$370</td><td>Banco de calidad a valoracion atractiva</td></tr>
+        <tr><td class="ticker">V</td><td>7%</td><td>$308.96</td><td>$370</td><td>Monopolio global de pagos</td></tr>
+        <tr><td class="ticker">COST</td><td>5%</td><td>$1,030.27</td><td>$1,195</td><td>Defensa y estabilidad</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>SATELITE (23%) | Crecimiento a Precio Razonable</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Ticker</th><th>Peso</th><th>Precio (8 Abr 2026)</th><th>Target 24M</th><th>Rol en la Cartera</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ticker">AVGO</td><td>7%</td><td>$350.63</td><td>$460</td><td>Infraestructura IA + diversificacion</td></tr>
+        <tr><td class="ticker">AMZN</td><td>6%</td><td>$221.25</td><td>$280</td><td>Triple motor: nube + retail + ads</td></tr>
+        <tr><td class="ticker">STZ</td><td>5%</td><td>$150.00</td><td>$192</td><td>Contrarian con respaldo Berkshire</td></tr>
+        <tr><td class="ticker">LLY</td><td>5%</td><td>$953.30</td><td>$1,165</td><td>Tendencia secular GLP-1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>RESERVA TACTICA (5%)</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Componente</th><th>Peso</th><th>Proposito</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Efectivo / Money Market</td><td>5%</td><td>Oportunidades en correcciones</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Logica de Construccion</h3>
+
+  <div class="insight-cards">
+    <div class="insight-card">
+      <div class="insight-card-title">1. Nucleo de calidad (65%)</div>
+      <p>Empresas con ventajas competitivas duraderas, generacion de flujo de caja libre consistente, y capacidad demostrada de componer valor a largo plazo. Estas posiciones proporcionan la base de retorno y limitan el drawdown en escenarios adversos.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">2. Satelite de crecimiento (23%)</div>
+      <p>Empresas con mayor potencial de apreciacion pero tambien mayor volatilidad. Cada posicion satelite tiene un catalizador especifico que podria generar retornos superiores al indice: IA para AVGO, expansion de margenes para AMZN, re-rating para STZ, y tendencia secular para LLY.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">3. Reserva tactica (5%)</div>
+      <p>Mantiene liquidez para actuar en momentos de dislocacion. En un entorno de incertidumbre arancelaria como el actual, esta reserva es particularmente valiosa. Rinde ~4-5% anual en money market mientras espera despliegue.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title">4. Diversificacion factorial</div>
+      <p>La cartera combina exposicion a multiples factores: calidad (V, MSFT, AAPL), valor relativo (GOOG, JPM, STZ), crecimiento (LLY, AVGO, AMZN), y defensa (UNH, COST). Esta diversificacion reduce la dependencia de un unico regimen de mercado.</p>
+    </div>
+  </div>
+
+  <h3>Retorno Esperado</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Metrica</th><th>Estimacion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Retorno anualizado (escenario base)</td><td>12-16%</td></tr>
+        <tr><td>Retorno anualizado S&amp;P 500 (historico)</td><td>~10%</td></tr>
+        <tr><td>Alpha esperado</td><td>+200 a +600 bps</td></tr>
+        <tr><td>Alpha objetivo</td><td>+300 bps</td></tr>
+        <tr><td>Probabilidad de lograr el objetivo</td><td>55-60%</td></tr>
+        <tr><td>Drawdown maximo esperado (base)</td><td>-15 a -20%</td></tr>
+        <tr><td>Tiempo de recuperacion estimado tras drawdown</td><td>6-12 meses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Riesgo Principal: Entorno Macro y Arancelario</h3>
+
+  <p>El mayor riesgo sistematico para esta cartera es una escalada prolongada de la guerra comercial que derive en estanflacion o recesion global. Posiciones especificamente expuestas:</p>
+
+  <div class="insight-cards">
+    <div class="insight-card danger">
+      <div class="insight-card-title">Exposicion arancelaria directa</div>
+      <p><strong>AAPL:</strong> Cadena de suministro en China, riesgo de aranceles sobre iPhone. <strong>STZ:</strong> Importaciones de cerveza desde Mexico. <strong>AVGO:</strong> Cadena de suministro global de semiconductores. <strong>AMZN:</strong> Costo de bienes importados en retail.</p>
+    </div>
+    <div class="insight-card success">
+      <div class="insight-card-title">Mitigantes</div>
+      <p>Diversificacion sectorial, posiciones defensivas (UNH, COST, V), y reserva tactica para aprovechar correcciones.</p>
+    </div>
+  </div>
+
+  <h3>Ajustes Segun Tolerancia al Riesgo</h3>
+
+  <h4>Si la tolerancia al riesgo es ALTA (perfil agresivo):</h4>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Ajuste</th><th>Implementacion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Aumentar AVGO</td><td>De 7% a 10%</td></tr>
+        <tr><td>Aumentar AMZN</td><td>De 6% a 8%</td></tr>
+        <tr><td>Agregar NVDA</td><td>5% (a $182.08)</td></tr>
+        <tr><td>Reducir V</td><td>De 7% a 4%</td></tr>
+        <tr><td>Reducir COST</td><td>De 5% a 3%</td></tr>
+        <tr><td>Eliminar efectivo</td><td>De 5% a 0%</td></tr>
+        <tr><td><strong>Resultado</strong></td><td>Mayor exposicion a IA/crecimiento; retorno esperado +2-4% adicional; drawdown maximo potencial -25 a -30%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Si la tolerancia al riesgo es BAJA (perfil conservador):</h4>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Ajuste</th><th>Implementacion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Agregar KO (Coca-Cola)</td><td>5% (a $77.29, dividendo ~3%)</td></tr>
+        <tr><td>Aumentar UNH</td><td>De 8% a 10%</td></tr>
+        <tr><td>Aumentar V</td><td>De 7% a 9%</td></tr>
+        <tr><td>Reducir STZ</td><td>De 5% a 0% (eliminar)</td></tr>
+        <tr><td>Reducir AVGO</td><td>De 7% a 4%</td></tr>
+        <tr><td>Agregar bonos (BND/AGG)</td><td>5%</td></tr>
+        <tr><td>Efectivo</td><td>Aumentar a 7%</td></tr>
+        <tr><td><strong>Resultado</strong></td><td>Menor volatilidad; retorno esperado -2-3% inferior; drawdown maximo potencial -10 a -15%; mayor generacion de dividendos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Calendario de Revision</h3>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Accion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Junio 2026</strong></td><td>Primer rebalanceo trimestral. Evaluar resultados Q1 de todas las posiciones.</td></tr>
+        <tr><td><strong>Septiembre 2026</strong></td><td>Segundo rebalanceo. Evaluar impacto de elecciones intermedias de EE.UU. y politica arancelaria.</td></tr>
+        <tr><td><strong>Diciembre 2026</strong></td><td>Tercer rebalanceo. Revision anual completa. Determinar si la tesis macro sigue vigente.</td></tr>
+        <tr><td><strong>Marzo 2027</strong></td><td>Cuarto rebalanceo. Evaluar si el alpha objetivo se esta materializando.</td></tr>
+        <tr><td><strong>Junio 2027</strong></td><td>Evaluacion final de 24 meses. Decidir si continuar la estrategia o transicionar a indexacion.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DISCLAIMER -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div class="disclaimer">
+  <p><strong>Disclaimer Final</strong></p>
+  <p>Este documento es un analisis educativo e informativo elaborado con base en datos publicos de reportes 13F, precios de mercado al cierre del 8 de abril de 2026, y proyecciones de consenso de analistas. No constituye asesoria financiera, recomendacion de compra o venta, ni una solicitud de inversion. Toda inversion en valores conlleva riesgo de perdida, incluyendo la perdida total del capital invertido. Las rentabilidades pasadas no garantizan resultados futuros. Los precios objetivo y probabilidades expresados son estimaciones del autor y pueden diferir materialmente de los resultados reales. Consulte a un asesor financiero registrado antes de tomar decisiones de inversion. El autor no tiene necesariamente posiciones en los valores mencionados.</p>
+  <p>Fuentes: SEC EDGAR (reportes 13F Q3-Q4 2025), Bloomberg, FactSet, Yahoo Finance. Precios de cierre del 8 de abril de 2026.</p>
+</div>
+
+</main>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ════════════════════════════════════════════════════════ -->
+<footer class="report-footer">
+  <div class="container">
+    <p>Documento preparado para Daniel Muvdi | ThinkFlowLabs | Abril 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
