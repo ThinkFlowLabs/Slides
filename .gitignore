@@ -1,0 +1,10 @@
+*.py
+*.pptx
+*.pdf
+.claude/
+.claude-design/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
